@@ -34,6 +34,7 @@
     <link rel="stylesheet" href="~/User/assets/vendors/vegas/vegas.min.css" />
     <link rel="stylesheet" href="~/User/assets/vendors/thm-icons/style.css">
     <link rel="stylesheet" href="~/User/assets/vendors/language-switcher/polyglot-language-switcher.css">
+    <link rel="stylesheet" href="~/User/assets/vendors/aos/aos.css">
     <!-- Module css -->
     <link rel="stylesheet" href="~/User/assets/css/module-css/01-header-section.css">
     <link rel="stylesheet" href="~/User/assets/css/module-css/02-banner-section.css">
@@ -43,6 +44,8 @@
     <link rel="stylesheet" href="~/User/assets/css/module-css/06-partner-section.css">
     <link rel="stylesheet" href="~/User/assets/css/module-css/07-footer-section.css">
     <link rel="stylesheet" href="~/User/assets/css/module-css/08-blog-section.css">
+    <link rel="stylesheet" href="~/User/assets/css/module-css/09-breadcrumb-section.css">
+    <link rel="stylesheet" href="~/User/assets/css/module-css/10-contact.css">
 
     <!-- Template styles -->
     <link rel="stylesheet" href="~/User/assets/css/style.css" />
@@ -144,19 +147,8 @@
                                                         <li><a href="cards-travel-hotel.html">Travel & Hotel</a></li>
                                                     </ul>
                                                 </li>
-                                                <li class="dropdown">
-                                                    <a href="#">Loans</a>
-                                                    <ul>
-                                                        <li><a href="loan-home.html">Home Loan</a></li>
-                                                        <li><a href="loan-personal.html">Personal Loan</a></li>
-                                                        <li><a href="loan-vehicle.html">Vehicle Loan</a></li>
-                                                        <li><a href="loan-education.html">Education Loan</a></li>
-                                                        <li><a href="loan-gold.html">Gold Loan</a></li>
-                                                    </ul>
-                                                </li>
                                             </ul>
                                         </li>
-
                                         <li class="dropdown">
                                             <a href="#">About</a>
                                             <ul>
@@ -178,18 +170,8 @@
                                                 <li><a href="blog-single.html">Single Post</a></li>
                                             </ul>
                                         </li>
-                                        <li class="dropdown">
-                                            <a href="#">Apply Now</a>
-                                            <ul>
-                                                <li><a href="loan-home.html">Home Loan</a></li>
-                                                <li><a href="loan-personal.html">Personal Loan</a></li>
-                                                <li><a href="loan-vehicle.html">Vehicle Loan</a></li>
-                                                <li><a href="loan-education.html">Education Loan</a></li>
-                                                <li><a href="loan-gold.html">Gold Loan</a></li>
-                                            </ul>
-                                        </li>
                                         <li>
-                                            <a href="contact.html">Get In Touch</a>
+                                            <a asp-controller="contact" asp-action="index">Get In Touch</a>
                                         </li>
                                     </ul>
                                 </div>
@@ -241,195 +223,7 @@
             <div class="sticky-header__content"></div><!-- /.sticky-header__content -->
         </div><!-- /.stricky-header -->
 
-
-        <!--Main Slider Start-->
-        <section class="main-slider main-slider-style1">
-            <div class="swiper-container thm-swiper__slider" data-swiper-options='{"slidesPerView": 1, "loop": true,
-                "effect": "fade",
-                "pagination": {
-                "el": "#main-slider-pagination",
-                "type": "bullets",
-                "clickable": true
-                },
-                "navigation": {
-                "nextEl": "#main-slider__swiper-button-next",
-                "prevEl": "#main-slider__swiper-button-prev"
-                },
-                "autoplay": {
-                "delay": 5000
-                }}'>
-                <div class="swiper-wrapper">
-                    <div class="slider-buttom-box">
-                        <a class="style2" href="#">Make Payment <span class="icon-play-button"></span></a>
-                        <a href="#">Make an Enquiry <span class="icon-play-button"></span></a>
-                    </div>
-
-                    <!--Start Single Swiper Slide-->
-                    <div class="swiper-slide">
-                        <div class="image-layer" style="background-image: url(~/User/assets/images/slides/slide-v1-1.jpg);">
-                        </div>
-                        <div class="main-slider-style1__shape1"
-                            style="background-image: url(~/User/assets/images/shapes/slider-1-shape-1.png);">
-                        </div>
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-xl-12">
-                                    <div class="main-slider-content">
-                                        <div class="main-slider-content__inner">
-                                            <div class="big-title">
-                                                <h2>Bank with the<br> Happiest Customers<br> in the World</h2>
-                                            </div>
-                                            <div class="text">
-                                                <p>
-                                                    On the other hand, we denounce with righteous indignation<br>
-                                                    and dislike men who are so beguiled.
-                                                </p>
-                                            </div>
-                                            <div class="btns-box">
-                                                <a class="btn-one" href="add-property.html">
-                                                    <span class="txt">
-                                                        Make an Appointment
-                                                    </span>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!--End Single Swiper Slide-->
-
-                    <!--Start Single Swiper Slide-->
-                    <div class="swiper-slide">
-                        <div class="image-layer" style="background-image: url(~/User/assets/images/slides/slide-v1-2.jpg);">
-                        </div>
-                        <div class="main-slider-style1__shape1"
-                            style="background-image: url(~/User/assets/images/shapes/slider-1-shape-1.png);">
-                        </div>
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-xl-12">
-                                    <div class="main-slider-content">
-                                        <div class="main-slider-content__inner">
-                                            <div class="big-title">
-                                                <h2>Banking Made<br> Easy, More Secure &<br> More Personal</h2>
-                                            </div>
-                                            <div class="text">
-                                                <p>
-                                                    Their duty through weakness of will, which is the same as<br> saying
-                                                    through shrinking from toil.
-                                                </p>
-                                            </div>
-                                            <div class="btns-box">
-                                                <a class="btn-one" href="add-property.html">
-                                                    <span class="txt">
-                                                        Make an Appointment
-                                                    </span>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!--End Single Swiper Slide-->
-
-                    <!--Start Single Swiper Slide-->
-                    <div class="swiper-slide">
-                        <div class="image-layer" style="background-image: url(~/User/assets/images/slides/slide-v1-3.jpg);">
-                        </div>
-                        <div class="main-slider-style1__shape1"
-                            style="background-image: url(~/User/assets/images/shapes/slider-1-shape-1.png);">
-                        </div>
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-xl-12">
-                                    <div class="main-slider-content">
-                                        <div class="main-slider-content__inner">
-                                            <div class="big-title">
-                                                <h2>An Innovative<br> Framework for Your<br> Financial solutions</h2>
-                                            </div>
-                                            <div class="text">
-                                                <p>
-                                                    Their duty through weakness of will, which is the same as<br> saying
-                                                    through shrinking from toil.
-                                                </p>
-                                            </div>
-                                            <div class="btns-box">
-                                                <a class="btn-one" href="add-property.html">
-                                                    <span class="txt">
-                                                        Make an Appointment
-                                                    </span>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!--End Single Swiper Slide-->
-
-
-                </div>
-
-                <!-- If we need navigation buttons -->
-                <div class="main-slider__nav">
-                    <div class="swiper-button-prev" id="main-slider__swiper-button-next">
-                        <i class="icon-chevron left"></i>
-                    </div>
-                    <div class="swiper-button-next" id="main-slider__swiper-button-prev">
-                        <i class="icon-chevron right"></i>
-                    </div>
-                </div>
-
-            </div>
-        </section>
-        <!--Main Slider End-->
-
         @RenderBody()
-
-        <!--Start slogan area-->
-        <section class="slogan-area">
-            <div class="container">
-                <div class="slogan-content-box">
-                    <div class="slogan-content-box-bg"
-                        style="background-image: url(~/User/assets/images/backgrounds/slogan-content-box-bg.jpg);"></div>
-                    <div class="inner-title">
-                        <h2>Experience a New Digital World.</h2>
-                        <p>Mobile banking application with new & exciting features.</p>
-                    </div>
-                    <div class="get-app-box">
-                        <ul>
-                            <li>
-                                <a href="#">
-                                    <div class="icon">
-                                        <span class="icon-play-store"></span>
-                                    </div>
-                                    <div class="text">
-                                        <h4>Download</h4>
-                                    </div>
-                                </a>
-                            </li>
-                            <li>
-                                <a class="style2" href="#">
-                                    <div class="icon">
-                                        <span class="icon-apple"></span>
-                                    </div>
-                                    <div class="text">
-                                        <h4>Download</h4>
-                                    </div>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!--End slogan area-->
-
 
         <!--Start footer area -->
         <footer class="footer-area">
@@ -734,6 +528,7 @@
     <script src="~/User/assets/vendors/wow/wow.js"></script>
     <script src="~/User/assets/vendors/extra-scripts/jquery.paroller.min.js"></script>
     <script src="~/User/assets/vendors/language-switcher/jquery.polyglot.language.switcher.js"></script>
+    <script src="~/User/assets/vendors/aos/aos.js"></script>
 
     <!-- Template js -->
     <script src="~/User/assets/js/custom.js"></script>

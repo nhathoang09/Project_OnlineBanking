@@ -2,6 +2,152 @@
     Layout = "~/Views/Shared/_UserLayout.cshtml";
 }
 
+
+<!--Main Slider Start-->
+<section class="main-slider main-slider-style1">
+    <div class="swiper-container thm-swiper__slider" data-swiper-options='{"slidesPerView": 1, "loop": true,
+                "effect": "fade",
+                "pagination": {
+                "el": "#main-slider-pagination",
+                "type": "bullets",
+                "clickable": true
+                },
+                "navigation": {
+                "nextEl": "#main-slider__swiper-button-next",
+                "prevEl": "#main-slider__swiper-button-prev"
+                },
+                "autoplay": {
+                "delay": 5000
+                }}'>
+        <div class="swiper-wrapper">
+            <div class="slider-buttom-box">
+                <a class="style2" href="#">Make Payment <span class="icon-play-button"></span></a>
+                <a href="#">Make an Enquiry <span class="icon-play-button"></span></a>
+            </div>
+
+            <!--Start Single Swiper Slide-->
+            <div class="swiper-slide">
+                <div class="image-layer" style="background-image: url(../../wwwroot/User/assets/images/slides/slide-v1-1.jpg);">
+                </div>
+                <div class="main-slider-style1__shape1"
+                     style="background-image: url(../../wwwroot/User/assets/images/shapes/slider-1-shape-1.png);">
+                </div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xl-12">
+                            <div class="main-slider-content">
+                                <div class="main-slider-content__inner">
+                                    <div class="big-title">
+                                        <h2>Bank with the<br> Happiest Customers<br> in the World</h2>
+                                    </div>
+                                    <div class="text">
+                                        <p>
+                                            On the other hand, we denounce with righteous indignation<br>
+                                            and dislike men who are so beguiled.
+                                        </p>
+                                    </div>
+                                    <div class="btns-box">
+                                        <a class="btn-one" href="add-property.html">
+                                            <span class="txt">
+                                                Make an Appointment
+                                            </span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--End Single Swiper Slide-->
+            <!--Start Single Swiper Slide-->
+            <div class="swiper-slide">
+                <div class="image-layer" style="background-image: url(../../wwwroot/User/assets/images/slides/slide-v1-2.jpg);">
+                </div>
+                <div class="main-slider-style1__shape1"
+                     style="background-image: url(../../wwwroot/User/assets/images/shapes/slider-1-shape-1.png);">
+                </div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xl-12">
+                            <div class="main-slider-content">
+                                <div class="main-slider-content__inner">
+                                    <div class="big-title">
+                                        <h2>Banking Made<br> Easy, More Secure &<br> More Personal</h2>
+                                    </div>
+                                    <div class="text">
+                                        <p>
+                                            Their duty through weakness of will, which is the same as<br> saying
+                                            through shrinking from toil.
+                                        </p>
+                                    </div>
+                                    <div class="btns-box">
+                                        <a class="btn-one" href="add-property.html">
+                                            <span class="txt">
+                                                Make an Appointment
+                                            </span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--End Single Swiper Slide-->
+            <!--Start Single Swiper Slide-->
+            <div class="swiper-slide">
+                <div class="image-layer" style="background-image: url(../../wwwroot/User/assets/images/slides/slide-v1-3.jpg);">
+                </div>
+                <div class="main-slider-style1__shape1"
+                     style="background-image: url(../../wwwroot/User/assets/images/shapes/slider-1-shape-1.png);">
+                </div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xl-12">
+                            <div class="main-slider-content">
+                                <div class="main-slider-content__inner">
+                                    <div class="big-title">
+                                        <h2>An Innovative<br> Framework for Your<br> Financial solutions</h2>
+                                    </div>
+                                    <div class="text">
+                                        <p>
+                                            Their duty through weakness of will, which is the same as<br> saying
+                                            through shrinking from toil.
+                                        </p>
+                                    </div>
+                                    <div class="btns-box">
+                                        <a class="btn-one" href="add-property.html">
+                                            <span class="txt">
+                                                Make an Appointment
+                                            </span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--End Single Swiper Slide-->
+
+
+        </div>
+
+        <!-- If we need navigation buttons -->
+        <div class="main-slider__nav">
+            <div class="swiper-button-prev" id="main-slider__swiper-button-next">
+                <i class="icon-chevron left"></i>
+            </div>
+            <div class="swiper-button-next" id="main-slider__swiper-button-prev">
+                <i class="icon-chevron right"></i>
+            </div>
+        </div>
+
+    </div>
+</section>
+<!--Main Slider End-->
+
 <!--Start Features Style1 Area-->
 <section class="features-style1-area">
     <div class="container">
@@ -17,14 +163,14 @@
                 <li>
                     <div class="single-features-style1-box">
                         <div class="shape-left">
-                            <img src="assets/images/shapes/shape-1.png" alt="">
+                            <img src="~/User/assets/images/shapes/shape-1.png" alt="">
                         </div>
                         <div class="shape-bottom">
-                            <img src="assets/images/shapes/shape-2.png" alt="">
+                            <img src="~/User/assets/images/shapes/shape-2.png" alt="">
                         </div>
                         <div class="counting-box">
                             <div class="counting-box-bg"
-                                 style="background-image: url(assets/images/shapes/counting-box-bg.png);"></div>
+                                 style="background-image: url(../../wwwroot/User/assets/images/shapes/counting-box-bg.png);"></div>
                             <h3>01</h3>
                         </div>
                         <div class="text-box">
@@ -45,14 +191,14 @@
                 <li>
                     <div class="single-features-style1-box">
                         <div class="shape-left">
-                            <img src="assets/images/shapes/shape-1.png" alt="">
+                            <img src="~/User/assets/images/shapes/shape-1.png" alt="">
                         </div>
                         <div class="shape-bottom">
-                            <img src="assets/images/shapes/shape-2.png" alt="">
+                            <img src="~/User/assets/images/shapes/shape-2.png" alt="">
                         </div>
                         <div class="counting-box">
                             <div class="counting-box-bg"
-                                 style="background-image: url(assets/images/shapes/counting-box-bg.png);"></div>
+                                 style="background-image: url(../../wwwroot/User/assets/images/shapes/counting-box-bg.png);"></div>
                             <h3>02</h3>
                         </div>
                         <div class="text-box">
@@ -73,14 +219,14 @@
                 <li>
                     <div class="single-features-style1-box">
                         <div class="shape-left">
-                            <img src="assets/images/shapes/shape-1.png" alt="">
+                            <img src="~/User/assets/images/shapes/shape-1.png" alt="">
                         </div>
                         <div class="shape-bottom">
-                            <img src="assets/images/shapes/shape-2.png" alt="">
+                            <img src="~/User/assets/images/shapes/shape-2.png" alt="">
                         </div>
                         <div class="counting-box">
                             <div class="counting-box-bg"
-                                 style="background-image: url(assets/images/shapes/counting-box-bg.png);"></div>
+                                 style="background-image: url(../../wwwroot/User/assets/images/shapes/counting-box-bg.png);"></div>
                             <h3>03</h3>
                         </div>
                         <div class="text-box">
@@ -104,7 +250,7 @@
 <!--End Features Style1 Area-->
 <!--Start Service Style1 Area-->
 <section class="service-style1-area">
-    <div class="service-style1-bg" style="background-image: url(assets/images/backgrounds/service-style1.jpg);">
+    <div class="service-style1-bg" style="background-image: url(../../wwwroot/User/assets/images/backgrounds/service-style1.jpg);">
     </div>
     <div class="container">
 
@@ -350,7 +496,7 @@
                             <div class="single-wealth-secure-box">
                                 <div class="img-box">
                                     <div class="img-box-inner">
-                                        <img src="assets/images/resources/wealth-secure-1.jpg" alt="">
+                                        <img src="~/User/assets/images/resources/wealth-secure-1.jpg" alt="">
                                     </div>
                                     <div class="inner-title">
                                         <div class="arrow-top"></div>
@@ -371,7 +517,7 @@
                             <div class="single-wealth-secure-box style2">
                                 <div class="img-box">
                                     <div class="img-box-inner">
-                                        <img src="assets/images/resources/wealth-secure-2.jpg" alt="">
+                                        <img src="~/User/assets/images/resources/wealth-secure-2.jpg" alt="">
                                     </div>
                                     <div class="inner-title">
                                         <div class="arrow-top"></div>
@@ -392,7 +538,7 @@
                             <div class="single-wealth-secure-box style3">
                                 <div class="img-box">
                                     <div class="img-box-inner">
-                                        <img src="assets/images/resources/wealth-secure-3.jpg" alt="">
+                                        <img src="~/User/assets/images/resources/wealth-secure-3.jpg" alt="">
                                     </div>
                                     <div class="inner-title">
                                         <div class="arrow-top"></div>
@@ -413,7 +559,7 @@
                             <div class="single-wealth-secure-box style4">
                                 <div class="img-box">
                                     <div class="img-box-inner">
-                                        <img src="assets/images/resources/wealth-secure-4.jpg" alt="">
+                                        <img src="~/User/assets/images/resources/wealth-secure-4.jpg" alt="">
                                     </div>
                                     <div class="inner-title">
                                         <div class="arrow-top"></div>
@@ -436,7 +582,7 @@
                             <div class="single-wealth-secure-box">
                                 <div class="img-box">
                                     <div class="img-box-inner">
-                                        <img src="assets/images/resources/wealth-secure-1.jpg" alt="">
+                                        <img src="~/User/assets/images/resources/wealth-secure-1.jpg" alt="">
                                     </div>
                                     <div class="inner-title">
                                         <div class="arrow-top"></div>
@@ -457,7 +603,7 @@
                             <div class="single-wealth-secure-box style2">
                                 <div class="img-box">
                                     <div class="img-box-inner">
-                                        <img src="assets/images/resources/wealth-secure-2.jpg" alt="">
+                                        <img src="~/User/assets/images/resources/wealth-secure-2.jpg" alt="">
                                     </div>
                                     <div class="inner-title">
                                         <div class="arrow-top"></div>
@@ -478,7 +624,7 @@
                             <div class="single-wealth-secure-box style3">
                                 <div class="img-box">
                                     <div class="img-box-inner">
-                                        <img src="assets/images/resources/wealth-secure-3.jpg" alt="">
+                                        <img src="~/User/assets/images/resources/wealth-secure-3.jpg" alt="">
                                     </div>
                                     <div class="inner-title">
                                         <div class="arrow-top"></div>
@@ -499,7 +645,7 @@
                             <div class="single-wealth-secure-box style4">
                                 <div class="img-box">
                                     <div class="img-box-inner">
-                                        <img src="assets/images/resources/wealth-secure-4.jpg" alt="">
+                                        <img src="~/User/assets/images/resources/wealth-secure-4.jpg" alt="">
                                     </div>
                                     <div class="inner-title">
                                         <div class="arrow-top"></div>
@@ -522,7 +668,7 @@
                             <div class="single-wealth-secure-box">
                                 <div class="img-box">
                                     <div class="img-box-inner">
-                                        <img src="assets/images/resources/wealth-secure-1.jpg" alt="">
+                                        <img src="~/User/assets/images/resources/wealth-secure-1.jpg" alt="">
                                     </div>
                                     <div class="inner-title">
                                         <div class="arrow-top"></div>
@@ -543,7 +689,7 @@
                             <div class="single-wealth-secure-box style2">
                                 <div class="img-box">
                                     <div class="img-box-inner">
-                                        <img src="assets/images/resources/wealth-secure-2.jpg" alt="">
+                                        <img src="~/User/assets/images/resources/wealth-secure-2.jpg" alt="">
                                     </div>
                                     <div class="inner-title">
                                         <div class="arrow-top"></div>
@@ -564,7 +710,7 @@
                             <div class="single-wealth-secure-box style3">
                                 <div class="img-box">
                                     <div class="img-box-inner">
-                                        <img src="assets/images/resources/wealth-secure-3.jpg" alt="">
+                                        <img src="~/User/assets/images/resources/wealth-secure-3.jpg" alt="">
                                     </div>
                                     <div class="inner-title">
                                         <div class="arrow-top"></div>
@@ -585,7 +731,7 @@
                             <div class="single-wealth-secure-box style4">
                                 <div class="img-box">
                                     <div class="img-box-inner">
-                                        <img src="assets/images/resources/wealth-secure-4.jpg" alt="">
+                                        <img src="~/User/assets/images/resources/wealth-secure-4.jpg" alt="">
                                     </div>
                                     <div class="inner-title">
                                         <div class="arrow-top"></div>
@@ -847,7 +993,7 @@
                                                 </div>
                                                 <div class="img-box">
                                                     <div class="img-box-bg"
-                                                         style="background-image: url(assets/images/resources/features-style2-banner-1.jpg);">
+                                                         style="background-image: url(../../wwwroot/User/assets/images/resources/features-style2-banner-1.jpg);">
                                                     </div>
                                                 </div>
                                             </div>
@@ -954,7 +1100,7 @@
                                                 </div>
                                                 <div class="img-box">
                                                     <div class="img-box-bg"
-                                                         style="background-image: url(assets/images/resources/features-style2-banner-2.jpg);">
+                                                         style="background-image: url(../../wwwroot/User/assets/images/resources/features-style2-banner-2.jpg);">
                                                     </div>
                                                 </div>
                                             </div>
@@ -1061,7 +1207,7 @@
                                                 </div>
                                                 <div class="img-box">
                                                     <div class="img-box-bg"
-                                                         style="background-image: url(assets/images/resources/features-style2-banner-3.jpg);">
+                                                         style="background-image: url(../../wwwroot/User/assets/images/resources/features-style2-banner-3.jpg);">
                                                     </div>
                                                 </div>
                                             </div>
@@ -1168,7 +1314,7 @@
                                                 </div>
                                                 <div class="img-box">
                                                     <div class="img-box-bg"
-                                                         style="background-image: url(assets/images/resources/features-style2-banner-4.jpg);">
+                                                         style="background-image: url(../../wwwroot/User/assets/images/resources/features-style2-banner-4.jpg);">
                                                     </div>
                                                 </div>
                                             </div>
@@ -1275,7 +1421,7 @@
                                                 </div>
                                                 <div class="img-box">
                                                     <div class="img-box-bg"
-                                                         style="background-image: url(assets/images/resources/features-style2-banner-1.jpg);">
+                                                         style="background-image: url(../../wwwroot/User/assets/images/resources/features-style2-banner-1.jpg);">
                                                     </div>
                                                 </div>
                                             </div>
@@ -1382,7 +1528,7 @@
                                                 </div>
                                                 <div class="img-box">
                                                     <div class="img-box-bg"
-                                                         style="background-image: url(assets/images/resources/features-style2-banner-1.jpg);">
+                                                         style="background-image: url(../../wwwroot/User/assets/images/resources/features-style2-banner-1.jpg);">
                                                     </div>
                                                 </div>
                                             </div>
@@ -1410,7 +1556,7 @@
             <div class="col-xl-6">
                 <div class="features-style3-img-box">
                     <div class="inner-img">
-                        <img class="paroller" src="assets/images/resources/features-style3-img.png" alt="">
+                        <img class="paroller" src="~/User/assets/images/resources/features-style3-img.png" alt="">
                     </div>
                     <div class="icon-holder float-bob-y">
                         <span class="icon-interest-rate"></span>
@@ -1475,7 +1621,7 @@
 <!--Start Money Exchange Rates Area-->
 <section class="money-exchange-value-area">
     <div class="money-exchange-value-area-bg"
-         style="background-image: url(assets/images/backgrounds/money-exchange-value.jpg);"></div>
+         style="background-image: url(../../wwwroot/User/assets/images/backgrounds/money-exchange-value.jpg);"></div>
     <div class="container">
         <div class="sec-title text-center">
             <h2>Foreign Exchange Rates</h2>
@@ -1514,7 +1660,7 @@
                                         <div class="single-money-exchange-value">
                                             <div class="flag-box">
                                                 <div class="flag-box-inner">
-                                                    <img src="assets/images/resources/flag-1.png" alt="">
+                                                    <img src="~/User/assets/images/resources/flag-1.png" alt="">
                                                 </div>
                                             </div>
                                             <h3>usd</h3>
@@ -1546,7 +1692,7 @@
                                         <div class="single-money-exchange-value">
                                             <div class="flag-box">
                                                 <div class="flag-box-inner">
-                                                    <img src="assets/images/resources/flag-2.png" alt="">
+                                                    <img src="~/User/assets/images/resources/flag-2.png" alt="">
                                                 </div>
                                             </div>
                                             <h3>sek</h3>
@@ -1578,7 +1724,7 @@
                                         <div class="single-money-exchange-value">
                                             <div class="flag-box">
                                                 <div class="flag-box-inner">
-                                                    <img src="assets/images/resources/flag-3.png" alt="">
+                                                    <img src="~/User/assets/images/resources/flag-3.png" alt="">
                                                 </div>
                                             </div>
                                             <h3>gbp</h3>
@@ -1610,7 +1756,7 @@
                                         <div class="single-money-exchange-value">
                                             <div class="flag-box">
                                                 <div class="flag-box-inner">
-                                                    <img src="assets/images/resources/flag-4.png" alt="">
+                                                    <img src="~/User/assets/images/resources/flag-4.png" alt="">
                                                 </div>
                                             </div>
                                             <h3>jpy</h3>
@@ -1642,7 +1788,7 @@
                                         <div class="single-money-exchange-value">
                                             <div class="flag-box">
                                                 <div class="flag-box-inner">
-                                                    <img src="assets/images/resources/flag-5.png" alt="">
+                                                    <img src="~/User/assets/images/resources/flag-5.png" alt="">
                                                 </div>
                                             </div>
                                             <h3>aud</h3>
@@ -1674,7 +1820,7 @@
                                         <div class="single-money-exchange-value">
                                             <div class="flag-box">
                                                 <div class="flag-box-inner">
-                                                    <img src="assets/images/resources/flag-6.png" alt="">
+                                                    <img src="~/User/assets/images/resources/flag-6.png" alt="">
                                                 </div>
                                             </div>
                                             <h3>cad</h3>
@@ -1716,7 +1862,7 @@
                                         <div class="single-money-exchange-value">
                                             <div class="flag-box">
                                                 <div class="flag-box-inner">
-                                                    <img src="assets/images/resources/flag-4.png" alt="">
+                                                    <img src="~/User/assets/images/resources/flag-4.png" alt="">
                                                 </div>
                                             </div>
                                             <h3>jpy</h3>
@@ -1748,7 +1894,7 @@
                                         <div class="single-money-exchange-value">
                                             <div class="flag-box">
                                                 <div class="flag-box-inner">
-                                                    <img src="assets/images/resources/flag-5.png" alt="">
+                                                    <img src="~/User/assets/images/resources/flag-5.png" alt="">
                                                 </div>
                                             </div>
                                             <h3>aud</h3>
@@ -1780,7 +1926,7 @@
                                         <div class="single-money-exchange-value">
                                             <div class="flag-box">
                                                 <div class="flag-box-inner">
-                                                    <img src="assets/images/resources/flag-6.png" alt="">
+                                                    <img src="~/User/assets/images/resources/flag-6.png" alt="">
                                                 </div>
                                             </div>
                                             <h3>cad</h3>
@@ -1812,7 +1958,7 @@
                                         <div class="single-money-exchange-value">
                                             <div class="flag-box">
                                                 <div class="flag-box-inner">
-                                                    <img src="assets/images/resources/flag-1.png" alt="">
+                                                    <img src="~/User/assets/images/resources/flag-1.png" alt="">
                                                 </div>
                                             </div>
                                             <h3>usd</h3>
@@ -1844,7 +1990,7 @@
                                         <div class="single-money-exchange-value">
                                             <div class="flag-box">
                                                 <div class="flag-box-inner">
-                                                    <img src="assets/images/resources/flag-2.png" alt="">
+                                                    <img src="~/User/assets/images/resources/flag-2.png" alt="">
                                                 </div>
                                             </div>
                                             <h3>sek</h3>
@@ -1876,7 +2022,7 @@
                                         <div class="single-money-exchange-value">
                                             <div class="flag-box">
                                                 <div class="flag-box-inner">
-                                                    <img src="assets/images/resources/flag-3.png" alt="">
+                                                    <img src="~/User/assets/images/resources/flag-3.png" alt="">
                                                 </div>
                                             </div>
                                             <h3>gbp</h3>
@@ -1950,7 +2096,7 @@
             <div class="col-xl-6">
                 <div class="faq-style1__image">
                     <div class="inner">
-                        <img src="assets/images/resources/faq-style1__image.jpg" alt="">
+                        <img src="~/User/assets/images/resources/faq-style1__image.jpg" alt="">
                     </div>
                 </div>
             </div>
@@ -2111,7 +2257,7 @@
                                 </div>
                             </div>
                             <div class="img-box">
-                                <div class="img-bg" style="background-image: url(assets/images/resources/deals-1.jpg);">
+                                <div class="img-bg" style="background-image: url(../../wwwroot/User/assets/images/resources/deals-1.jpg);">
                                 </div>
                                 <div class="shape-left-1"></div>
                                 <div class="shape-right-1"></div>
@@ -2157,7 +2303,7 @@
                                 </div>
                             </div>
                             <div class="img-box">
-                                <div class="img-bg" style="background-image: url(assets/images/resources/deals-2.jpg);">
+                                <div class="img-bg" style="background-image: url(../../wwwroot/User/assets/images/resources/deals-2.jpg);">
                                 </div>
                                 <div class="shape-left-1"></div>
                                 <div class="shape-right-1"></div>
@@ -2204,7 +2350,7 @@
                                 </div>
                             </div>
                             <div class="img-box">
-                                <div class="img-bg" style="background-image: url(assets/images/resources/deals-1.jpg);">
+                                <div class="img-bg" style="background-image: url(../../wwwroot/User/assets/images/resources/deals-1.jpg);">
                                 </div>
                                 <div class="shape-left-1"></div>
                                 <div class="shape-right-1"></div>
@@ -2250,7 +2396,7 @@
                                 </div>
                             </div>
                             <div class="img-box">
-                                <div class="img-bg" style="background-image: url(assets/images/resources/deals-2.jpg);">
+                                <div class="img-bg" style="background-image: url(../../wwwroot/User/assets/images/resources/deals-2.jpg);">
                                 </div>
                                 <div class="shape-left-1"></div>
                                 <div class="shape-right-1"></div>
@@ -2278,7 +2424,7 @@
 
                     <div class="emi-calculator-tab__button">
                         <div class="emi-calculator-tab__button--bg"
-                             style="background-image: url(assets/images/resources/emi-calculator.jpg);"></div>
+                             style="background-image: url(../../wwwroot/User/assets/images/resources/emi-calculator.jpg);"></div>
                         <ul class="tabs-button-box">
                             <li data-tab="#home-loan" class="tab-btn-item active-btn-item">
                                 <div class="icon-box">
@@ -2651,3 +2797,41 @@
     </div>
 </section>
 <!--End EMI Calculator Area-->
+<!--Start slogan area-->
+<section class="slogan-area">
+    <div class="container">
+        <div class="slogan-content-box">
+            <div class="slogan-content-box-bg"
+                 style="background-image: url(../../wwwroot/User/assets/images/backgrounds/slogan-content-box-bg.jpg);"></div>
+            <div class="inner-title">
+                <h2>Experience a New Digital World.</h2>
+                <p>Mobile banking application with new & exciting features.</p>
+            </div>
+            <div class="get-app-box">
+                <ul>
+                    <li>
+                        <a href="#">
+                            <div class="icon">
+                                <span class="icon-play-store"></span>
+                            </div>
+                            <div class="text">
+                                <h4>Download</h4>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="style2" href="#">
+                            <div class="icon">
+                                <span class="icon-apple"></span>
+                            </div>
+                            <div class="text">
+                                <h4>Download</h4>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+<!--End slogan area-->
