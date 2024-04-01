@@ -2,11 +2,13 @@
 
 namespace Project_OnlineBanking.Controllers
 {
-    [Route("home")]
-    public class HomeController : Controller
+    [Route("login")]
+    public class LoginController : Controller
     {
+
         [Route("index")]
         [Route("")]
+        [Route("~/")]
         public IActionResult Index()
         {
             return View();
