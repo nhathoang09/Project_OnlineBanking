@@ -1,4 +1,5 @@
-﻿@{
+﻿@inject Project_OnlineBanking.Services.UserService userService;
+@{
     Layout = "~/Views/Shared/_UserLayout.cshtml";
 }
 
@@ -27,10 +28,10 @@
 
             <!--Start Single Swiper Slide-->
             <div class="swiper-slide">
-                <div class="image-layer" style="background-image: url(../../wwwroot/User/assets/images/slides/slide-v1-1.jpg);">
+                <div class="image-layer" style="background-image: url(../User/assets/images/backgrounds/Background4.jpg);">
                 </div>
                 <div class="main-slider-style1__shape1"
-                     style="background-image: url(../../wwwroot/User/assets/images/shapes/slider-1-shape-1.png);">
+                     style="background-image: url(../User/assets/images/shapes/slider-1-shape-1.png);">
                 </div>
                 <div class="container">
                     <div class="row">
@@ -62,10 +63,10 @@
             <!--End Single Swiper Slide-->
             <!--Start Single Swiper Slide-->
             <div class="swiper-slide">
-                <div class="image-layer" style="background-image: url(../../wwwroot/User/assets/images/slides/slide-v1-2.jpg);">
+                <div class="image-layer" style="background-image: url(../User/assets/images/backgrounds/Background5.jpg);">
                 </div>
                 <div class="main-slider-style1__shape1"
-                     style="background-image: url(../../wwwroot/User/assets/images/shapes/slider-1-shape-1.png);">
+                     style="background-image: url(../User/assets/images/shapes/slider-1-shape-1.png);">
                 </div>
                 <div class="container">
                     <div class="row">
@@ -97,10 +98,10 @@
             <!--End Single Swiper Slide-->
             <!--Start Single Swiper Slide-->
             <div class="swiper-slide">
-                <div class="image-layer" style="background-image: url(../../wwwroot/User/assets/images/slides/slide-v1-3.jpg);">
+                <div class="image-layer" style="background-image: url(../User/assets/images/backgrounds/Background6.jpg);">
                 </div>
                 <div class="main-slider-style1__shape1"
-                     style="background-image: url(../../wwwroot/User/assets/images/shapes/slider-1-shape-1.png);">
+                     style="background-image: url(../User/assets/images/shapes/slider-1-shape-1.png);">
                 </div>
                 <div class="container">
                     <div class="row">
@@ -147,7 +148,369 @@
     </div>
 </section>
 <!--Main Slider End-->
+<!--Start EMI Calculator Area-->
+<section class="emi-calculator-area">
+    <div class="container">
+        <div class="sec-title text-center">
+            <div class="sub-title">
+                <p>Wellcome</p>
+            </div>
+            <h2>@ViewBag.fullname</h2>
+        </div>
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="emi-calculator-tab">
 
+                    <div class="emi-calculator-tab__button">
+                        <div class="emi-calculator-tab__button--bg"
+                             style="background-image: url(../User/assets/images/backgrounds/Background2.jpg);"></div>
+                        <ul class="tabs-button-box">
+                            <li data-tab="#home-loan" class="tab-btn-item active-btn-item">
+                                <div class="icon-box">
+                                    <span class="icon-loan-1"></span>
+                                    <div class="overlay-text">
+                                        <p>Home</p>
+                                    </div>
+                                </div>
+                            </li>
+                            <li data-tab="#personal-loan" class="tab-btn-item">
+                                <div class="icon-box">
+                                    <span class="icon-credit-card"></span>
+                                    <div class="overlay-text">
+                                        <p>Credit Card</p>
+                                    </div>
+                                </div>
+                            </li>
+                            <li data-tab="#vehicle-loan" class="tab-btn-item">
+                                <div class="icon-box">
+                                    <span class="icon-check-book"></span>
+                                    <div class="overlay-text">
+                                        <p>Cheques Books</p>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="emi-calculator-tab-content-box-outer">
+                        <!--Start Tabs Content Box-->
+                        <div class="tabs-content-box">
+                            <!--Tab-->
+                            <div class="tab-content-box-item tab-content-box-item-active" id="home-loan">
+                                <div class="emi-calculator-tab-content-box-item">
+
+                                    <div class="range-box">
+                                        <div class="row">
+                                            <div class="col-lg-12 column">
+                                                <div class="price-range-box">
+                                                    <div class="inner">
+                                                        <h4>Account Number</h4>
+                                                        <h3>@ViewBag.banknumber</h3>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-12 column">
+                                                <div class="loan-term-range-box">
+                                                    <div class="inner">
+                                                        <h4>Loan Term <span>(Years)</span></h4>
+                                                        <div class="loan-term-range-slider"></div>
+                                                        <div class="range-input">
+                                                            <div class="input">
+                                                                <input type="text" class="loan-term-range"
+                                                                       name="field-name" readonly="">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="right-box">
+                                                        <h5>20Yrs</h5>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-12 column">
+                                                <div class="interest-rate-range-box">
+                                                    <div class="inner">
+                                                        <h4>Interest Rate</h4>
+                                                        <div class="interest-rate-range-slider"></div>
+                                                        <div class="range-input">
+                                                            <div class="input">
+                                                                <input type="text" class="interest-rate-range"
+                                                                       name="field-name" readonly="">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="right-box">
+                                                        <h5>8%</h5>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="emi-calculator-output-box clearfix">
+                                        <div class="left-box">
+                                            <div class="top">
+                                                <div class="icon">
+                                                    <span class="icon-loan-3"></span>
+                                                </div>
+                                                <div class="inner-title">
+                                                    <h4>Bank Number</h4>
+                                                    @if (ViewBag.banknumber == "0")
+                                                    {
+                                                        <h3>
+                                                            You dont have an account number yet, <a asp-controller="account" asp-action="banknumber">Get It Now</a>
+                                                        </h3>
+                                                    }else{
+                                                        <h3>@ViewBag.banknumber</h3>
+                                                    }
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="right-box">
+                                            <div class="top">
+                                                <div class="inner-title">
+                                                    <h3>Total Balance</h3>
+                                                    <h2><span>$</span>@ViewBag.balance</h2>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <!--Tab-->
+                            <div class="tab-content-box-item" id="personal-loan">
+                                <div class="emi-calculator-tab-content-box-item">
+
+                                    <div class="range-box">
+                                        <div class="row">
+                                            <div class="col-lg-12 column">
+                                                <div class="price-range-box">
+                                                    <div class="inner">
+                                                        <h4>Loan Amount</h4>
+                                                        <div class="price-range-slider"></div>
+                                                        <div class="range-input">
+                                                            <div class="input">
+                                                                <input type="text" class="property-amount"
+                                                                       name="field-name" readonly="">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="right-box">
+                                                        <h5>$1,000,000</h5>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-12 column">
+                                                <div class="loan-term-range-box">
+                                                    <div class="inner">
+                                                        <h4>Loan Term <span>(Years)</span></h4>
+                                                        <div class="loan-term-range-slider"></div>
+                                                        <div class="range-input">
+                                                            <div class="input">
+                                                                <input type="text" class="loan-term-range"
+                                                                       name="field-name" readonly="">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="right-box">
+                                                        <h5>20Yrs</h5>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-12 column">
+                                                <div class="interest-rate-range-box">
+                                                    <div class="inner">
+                                                        <h4>Interest Rate</h4>
+                                                        <div class="interest-rate-range-slider"></div>
+                                                        <div class="range-input">
+                                                            <div class="input">
+                                                                <input type="text" class="interest-rate-range"
+                                                                       name="field-name" readonly="">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="right-box">
+                                                        <h5>8%</h5>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="emi-calculator-output-box clearfix">
+                                        <div class="left-box">
+                                            <div class="top">
+                                                <div class="icon">
+                                                    <span class="icon-loan-3"></span>
+                                                </div>
+                                                <div class="inner-title">
+                                                    <h3>Your Monthly EMI</h3>
+                                                    <h2><span>$</span>10,250</h2>
+                                                </div>
+                                            </div>
+                                            <div class="btns-box">
+                                                <a class="btn-one" href="#">
+                                                    <span class="txt">Apply Online</span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="right-box">
+                                            <ul>
+                                                <li>
+                                                    <div class="inner">
+                                                        <div class="icon">
+                                                            <span class="icon-right-arrow"></span>
+                                                        </div>
+                                                        <div class="text">
+                                                            <a href="#">Interest Amount</a>
+                                                            <p>$720,260</p>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div class="inner">
+                                                        <div class="icon">
+                                                            <span class="icon-right-arrow"></span>
+                                                        </div>
+                                                        <div class="text">
+                                                            <a href="#">Total Amount Payble</a>
+                                                            <p>$720,260</p>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <!--Tab-->
+                            <div class="tab-content-box-item" id="vehicle-loan">
+                                <div class="emi-calculator-tab-content-box-item">
+
+                                    <div class="range-box">
+                                        <div class="row">
+                                            <div class="col-lg-12 column">
+                                                <div class="price-range-box">
+                                                    <div class="inner">
+                                                        <h4>Loan Amount</h4>
+                                                        <div class="price-range-slider"></div>
+                                                        <div class="range-input">
+                                                            <div class="input">
+                                                                <input type="text" class="property-amount"
+                                                                       name="field-name" readonly="">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="right-box">
+                                                        <h5>$1,000,000</h5>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-12 column">
+                                                <div class="loan-term-range-box">
+                                                    <div class="inner">
+                                                        <h4>Loan Term <span>(Years)</span></h4>
+                                                        <div class="loan-term-range-slider"></div>
+                                                        <div class="range-input">
+                                                            <div class="input">
+                                                                <input type="text" class="loan-term-range"
+                                                                       name="field-name" readonly="">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="right-box">
+                                                        <h5>20Yrs</h5>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-12 column">
+                                                <div class="interest-rate-range-box">
+                                                    <div class="inner">
+                                                        <h4>Interest Rate</h4>
+                                                        <div class="interest-rate-range-slider"></div>
+                                                        <div class="range-input">
+                                                            <div class="input">
+                                                                <input type="text" class="interest-rate-range"
+                                                                       name="field-name" readonly="">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="right-box">
+                                                        <h5>8%</h5>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="emi-calculator-output-box clearfix">
+                                        <div class="left-box">
+                                            <div class="top">
+                                                <div class="icon">
+                                                    <span class="icon-loan-3"></span>
+                                                </div>
+                                                <div class="inner-title">
+                                                    <h3>Your Monthly EMI</h3>
+                                                    <h2><span>$</span>10,250</h2>
+                                                </div>
+                                            </div>
+                                            <div class="btns-box">
+                                                <a class="btn-one" href="#">
+                                                    <span class="txt">Apply Online</span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="right-box">
+                                            <ul>
+                                                <li>
+                                                    <div class="inner">
+                                                        <div class="icon">
+                                                            <span class="icon-right-arrow"></span>
+                                                        </div>
+                                                        <div class="text">
+                                                            <a href="#">Interest Amount</a>
+                                                            <p>$720,260</p>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div class="inner">
+                                                        <div class="icon">
+                                                            <span class="icon-right-arrow"></span>
+                                                        </div>
+                                                        <div class="text">
+                                                            <a href="#">Total Amount Payble</a>
+                                                            <p>$720,260</p>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+
+                        </div>
+                        <!--End Tabs Content Box-->
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--End EMI Calculator Area-->
 <!--Start Features Style1 Area-->
 <section class="features-style1-area">
     <div class="container">
@@ -170,7 +533,7 @@
                         </div>
                         <div class="counting-box">
                             <div class="counting-box-bg"
-                                 style="background-image: url(../../wwwroot/User/assets/images/shapes/counting-box-bg.png);"></div>
+                                 style="background-image: url(../User/assets/images/shapes/counting-box-bg.png);"></div>
                             <h3>01</h3>
                         </div>
                         <div class="text-box">
@@ -198,7 +561,7 @@
                         </div>
                         <div class="counting-box">
                             <div class="counting-box-bg"
-                                 style="background-image: url(../../wwwroot/User/assets/images/shapes/counting-box-bg.png);"></div>
+                                 style="background-image: url(../User/assets/images/shapes/counting-box-bg.png);"></div>
                             <h3>02</h3>
                         </div>
                         <div class="text-box">
@@ -226,7 +589,7 @@
                         </div>
                         <div class="counting-box">
                             <div class="counting-box-bg"
-                                 style="background-image: url(../../wwwroot/User/assets/images/shapes/counting-box-bg.png);"></div>
+                                 style="background-image: url(../User/assets/images/shapes/counting-box-bg.png);"></div>
                             <h3>03</h3>
                         </div>
                         <div class="text-box">
@@ -250,7 +613,7 @@
 <!--End Features Style1 Area-->
 <!--Start Service Style1 Area-->
 <section class="service-style1-area">
-    <div class="service-style1-bg" style="background-image: url(../../wwwroot/User/assets/images/backgrounds/service-style1.jpg);">
+    <div class="service-style1-bg" style="background-image: url(../User/assets/images/backgrounds/service-style1.jpg);">
     </div>
     <div class="container">
 
@@ -993,7 +1356,7 @@
                                                 </div>
                                                 <div class="img-box">
                                                     <div class="img-box-bg"
-                                                         style="background-image: url(../../wwwroot/User/assets/images/resources/features-style2-banner-1.jpg);">
+                                                         style="background-image: url(../User/assets/images/resources/features-style2-banner-1.jpg);">
                                                     </div>
                                                 </div>
                                             </div>
@@ -1100,7 +1463,7 @@
                                                 </div>
                                                 <div class="img-box">
                                                     <div class="img-box-bg"
-                                                         style="background-image: url(../../wwwroot/User/assets/images/resources/features-style2-banner-2.jpg);">
+                                                         style="background-image: url(../User/assets/images/resources/features-style2-banner-2.jpg);">
                                                     </div>
                                                 </div>
                                             </div>
@@ -1207,7 +1570,7 @@
                                                 </div>
                                                 <div class="img-box">
                                                     <div class="img-box-bg"
-                                                         style="background-image: url(../../wwwroot/User/assets/images/resources/features-style2-banner-3.jpg);">
+                                                         style="background-image: url(../User/assets/images/resources/features-style2-banner-3.jpg);">
                                                     </div>
                                                 </div>
                                             </div>
@@ -1314,7 +1677,7 @@
                                                 </div>
                                                 <div class="img-box">
                                                     <div class="img-box-bg"
-                                                         style="background-image: url(../../wwwroot/User/assets/images/resources/features-style2-banner-4.jpg);">
+                                                         style="background-image: url(../User/assets/images/resources/features-style2-banner-4.jpg);">
                                                     </div>
                                                 </div>
                                             </div>
@@ -1421,7 +1784,7 @@
                                                 </div>
                                                 <div class="img-box">
                                                     <div class="img-box-bg"
-                                                         style="background-image: url(../../wwwroot/User/assets/images/resources/features-style2-banner-1.jpg);">
+                                                         style="background-image: url(../User/assets/images/resources/features-style2-banner-1.jpg);">
                                                     </div>
                                                 </div>
                                             </div>
@@ -1528,7 +1891,7 @@
                                                 </div>
                                                 <div class="img-box">
                                                     <div class="img-box-bg"
-                                                         style="background-image: url(../../wwwroot/User/assets/images/resources/features-style2-banner-1.jpg);">
+                                                         style="background-image: url(../User/assets/images/resources/features-style2-banner-1.jpg);">
                                                     </div>
                                                 </div>
                                             </div>
@@ -1621,7 +1984,7 @@
 <!--Start Money Exchange Rates Area-->
 <section class="money-exchange-value-area">
     <div class="money-exchange-value-area-bg"
-         style="background-image: url(../../wwwroot/User/assets/images/backgrounds/money-exchange-value.jpg);"></div>
+         style="background-image: url(../User/assets/images/backgrounds/money-exchange-value.jpg);"></div>
     <div class="container">
         <div class="sec-title text-center">
             <h2>Foreign Exchange Rates</h2>
@@ -2257,7 +2620,7 @@
                                 </div>
                             </div>
                             <div class="img-box">
-                                <div class="img-bg" style="background-image: url(../../wwwroot/User/assets/images/resources/deals-1.jpg);">
+                                <div class="img-bg" style="background-image: url(../User/assets/images/resources/deals-1.jpg);">
                                 </div>
                                 <div class="shape-left-1"></div>
                                 <div class="shape-right-1"></div>
@@ -2303,7 +2666,7 @@
                                 </div>
                             </div>
                             <div class="img-box">
-                                <div class="img-bg" style="background-image: url(../../wwwroot/User/assets/images/resources/deals-2.jpg);">
+                                <div class="img-bg" style="background-image: url(../User/assets/images/resources/deals-2.jpg);">
                                 </div>
                                 <div class="shape-left-1"></div>
                                 <div class="shape-right-1"></div>
@@ -2350,7 +2713,7 @@
                                 </div>
                             </div>
                             <div class="img-box">
-                                <div class="img-bg" style="background-image: url(../../wwwroot/User/assets/images/resources/deals-1.jpg);">
+                                <div class="img-bg" style="background-image: url(../User/assets/images/resources/deals-1.jpg);">
                                 </div>
                                 <div class="shape-left-1"></div>
                                 <div class="shape-right-1"></div>
@@ -2396,7 +2759,7 @@
                                 </div>
                             </div>
                             <div class="img-box">
-                                <div class="img-bg" style="background-image: url(../../wwwroot/User/assets/images/resources/deals-2.jpg);">
+                                <div class="img-bg" style="background-image: url(../User/assets/images/resources/deals-2.jpg);">
                                 </div>
                                 <div class="shape-left-1"></div>
                                 <div class="shape-right-1"></div>
@@ -2409,400 +2772,12 @@
     </div>
 </section>
 <!--End Deals Area-->
-<!--Start EMI Calculator Area-->
-<section class="emi-calculator-area">
-    <div class="container">
-        <div class="sec-title text-center">
-            <h2>Flexible EMI Calculator Online</h2>
-            <div class="sub-title">
-                <p>Easily calculate your equated monthly instalment online.</p>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-xl-12">
-                <div class="emi-calculator-tab">
-
-                    <div class="emi-calculator-tab__button">
-                        <div class="emi-calculator-tab__button--bg"
-                             style="background-image: url(../../wwwroot/User/assets/images/resources/emi-calculator.jpg);"></div>
-                        <ul class="tabs-button-box">
-                            <li data-tab="#home-loan" class="tab-btn-item active-btn-item">
-                                <div class="icon-box">
-                                    <span class="icon-loan-1"></span>
-                                    <div class="overlay-text">
-                                        <p>Home Loan</p>
-                                    </div>
-                                </div>
-                            </li>
-                            <li data-tab="#personal-loan" class="tab-btn-item">
-                                <div class="icon-box">
-                                    <span class="icon-loan-2"></span>
-                                    <div class="overlay-text">
-                                        <p>Personal Loan</p>
-                                    </div>
-                                </div>
-                            </li>
-                            <li data-tab="#vehicle-loan" class="tab-btn-item">
-                                <div class="icon-box">
-                                    <span class="icon-car-loan"></span>
-                                    <div class="overlay-text">
-                                        <p>Vehicle Loan</p>
-                                    </div>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <div class="emi-calculator-tab-content-box-outer">
-                        <!--Start Tabs Content Box-->
-                        <div class="tabs-content-box">
-                            <!--Tab-->
-                            <div class="tab-content-box-item tab-content-box-item-active" id="home-loan">
-                                <div class="emi-calculator-tab-content-box-item">
-
-                                    <div class="range-box">
-                                        <div class="row">
-                                            <div class="col-lg-12 column">
-                                                <div class="price-range-box">
-                                                    <div class="inner">
-                                                        <h4>Loan Amount</h4>
-                                                        <div class="price-range-slider"></div>
-                                                        <div class="range-input">
-                                                            <div class="input">
-                                                                <input type="text" class="property-amount"
-                                                                       name="field-name" readonly="">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="right-box">
-                                                        <h5>$1,000,000</h5>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="col-lg-12 column">
-                                                <div class="loan-term-range-box">
-                                                    <div class="inner">
-                                                        <h4>Loan Term <span>(Years)</span></h4>
-                                                        <div class="loan-term-range-slider"></div>
-                                                        <div class="range-input">
-                                                            <div class="input">
-                                                                <input type="text" class="loan-term-range"
-                                                                       name="field-name" readonly="">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="right-box">
-                                                        <h5>20Yrs</h5>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="col-lg-12 column">
-                                                <div class="interest-rate-range-box">
-                                                    <div class="inner">
-                                                        <h4>Interest Rate</h4>
-                                                        <div class="interest-rate-range-slider"></div>
-                                                        <div class="range-input">
-                                                            <div class="input">
-                                                                <input type="text" class="interest-rate-range"
-                                                                       name="field-name" readonly="">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="right-box">
-                                                        <h5>8%</h5>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="emi-calculator-output-box clearfix">
-                                        <div class="left-box">
-                                            <div class="top">
-                                                <div class="icon">
-                                                    <span class="icon-loan-3"></span>
-                                                </div>
-                                                <div class="inner-title">
-                                                    <h3>Your Monthly EMI</h3>
-                                                    <h2><span>$</span>10,250</h2>
-                                                </div>
-                                            </div>
-                                            <div class="btns-box">
-                                                <a class="btn-one" href="#">
-                                                    <span class="txt">Apply Online</span>
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="right-box">
-                                            <ul>
-                                                <li>
-                                                    <div class="inner">
-                                                        <div class="icon">
-                                                            <span class="icon-right-arrow"></span>
-                                                        </div>
-                                                        <div class="text">
-                                                            <a href="#">Interest Amount</a>
-                                                            <p>$720,260</p>
-                                                        </div>
-                                                    </div>
-                                                </li>
-                                                <li>
-                                                    <div class="inner">
-                                                        <div class="icon">
-                                                            <span class="icon-right-arrow"></span>
-                                                        </div>
-                                                        <div class="text">
-                                                            <a href="#">Total Amount Payble</a>
-                                                            <p>$720,260</p>
-                                                        </div>
-                                                    </div>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
-
-                            <!--Tab-->
-                            <div class="tab-content-box-item" id="personal-loan">
-                                <div class="emi-calculator-tab-content-box-item">
-
-                                    <div class="range-box">
-                                        <div class="row">
-                                            <div class="col-lg-12 column">
-                                                <div class="price-range-box">
-                                                    <div class="inner">
-                                                        <h4>Loan Amount</h4>
-                                                        <div class="price-range-slider"></div>
-                                                        <div class="range-input">
-                                                            <div class="input">
-                                                                <input type="text" class="property-amount"
-                                                                       name="field-name" readonly="">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="right-box">
-                                                        <h5>$1,000,000</h5>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="col-lg-12 column">
-                                                <div class="loan-term-range-box">
-                                                    <div class="inner">
-                                                        <h4>Loan Term <span>(Years)</span></h4>
-                                                        <div class="loan-term-range-slider"></div>
-                                                        <div class="range-input">
-                                                            <div class="input">
-                                                                <input type="text" class="loan-term-range"
-                                                                       name="field-name" readonly="">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="right-box">
-                                                        <h5>20Yrs</h5>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="col-lg-12 column">
-                                                <div class="interest-rate-range-box">
-                                                    <div class="inner">
-                                                        <h4>Interest Rate</h4>
-                                                        <div class="interest-rate-range-slider"></div>
-                                                        <div class="range-input">
-                                                            <div class="input">
-                                                                <input type="text" class="interest-rate-range"
-                                                                       name="field-name" readonly="">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="right-box">
-                                                        <h5>8%</h5>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="emi-calculator-output-box clearfix">
-                                        <div class="left-box">
-                                            <div class="top">
-                                                <div class="icon">
-                                                    <span class="icon-loan-3"></span>
-                                                </div>
-                                                <div class="inner-title">
-                                                    <h3>Your Monthly EMI</h3>
-                                                    <h2><span>$</span>10,250</h2>
-                                                </div>
-                                            </div>
-                                            <div class="btns-box">
-                                                <a class="btn-one" href="#">
-                                                    <span class="txt">Apply Online</span>
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="right-box">
-                                            <ul>
-                                                <li>
-                                                    <div class="inner">
-                                                        <div class="icon">
-                                                            <span class="icon-right-arrow"></span>
-                                                        </div>
-                                                        <div class="text">
-                                                            <a href="#">Interest Amount</a>
-                                                            <p>$720,260</p>
-                                                        </div>
-                                                    </div>
-                                                </li>
-                                                <li>
-                                                    <div class="inner">
-                                                        <div class="icon">
-                                                            <span class="icon-right-arrow"></span>
-                                                        </div>
-                                                        <div class="text">
-                                                            <a href="#">Total Amount Payble</a>
-                                                            <p>$720,260</p>
-                                                        </div>
-                                                    </div>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
-
-                            <!--Tab-->
-                            <div class="tab-content-box-item" id="vehicle-loan">
-                                <div class="emi-calculator-tab-content-box-item">
-
-                                    <div class="range-box">
-                                        <div class="row">
-                                            <div class="col-lg-12 column">
-                                                <div class="price-range-box">
-                                                    <div class="inner">
-                                                        <h4>Loan Amount</h4>
-                                                        <div class="price-range-slider"></div>
-                                                        <div class="range-input">
-                                                            <div class="input">
-                                                                <input type="text" class="property-amount"
-                                                                       name="field-name" readonly="">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="right-box">
-                                                        <h5>$1,000,000</h5>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="col-lg-12 column">
-                                                <div class="loan-term-range-box">
-                                                    <div class="inner">
-                                                        <h4>Loan Term <span>(Years)</span></h4>
-                                                        <div class="loan-term-range-slider"></div>
-                                                        <div class="range-input">
-                                                            <div class="input">
-                                                                <input type="text" class="loan-term-range"
-                                                                       name="field-name" readonly="">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="right-box">
-                                                        <h5>20Yrs</h5>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="col-lg-12 column">
-                                                <div class="interest-rate-range-box">
-                                                    <div class="inner">
-                                                        <h4>Interest Rate</h4>
-                                                        <div class="interest-rate-range-slider"></div>
-                                                        <div class="range-input">
-                                                            <div class="input">
-                                                                <input type="text" class="interest-rate-range"
-                                                                       name="field-name" readonly="">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="right-box">
-                                                        <h5>8%</h5>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="emi-calculator-output-box clearfix">
-                                        <div class="left-box">
-                                            <div class="top">
-                                                <div class="icon">
-                                                    <span class="icon-loan-3"></span>
-                                                </div>
-                                                <div class="inner-title">
-                                                    <h3>Your Monthly EMI</h3>
-                                                    <h2><span>$</span>10,250</h2>
-                                                </div>
-                                            </div>
-                                            <div class="btns-box">
-                                                <a class="btn-one" href="#">
-                                                    <span class="txt">Apply Online</span>
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="right-box">
-                                            <ul>
-                                                <li>
-                                                    <div class="inner">
-                                                        <div class="icon">
-                                                            <span class="icon-right-arrow"></span>
-                                                        </div>
-                                                        <div class="text">
-                                                            <a href="#">Interest Amount</a>
-                                                            <p>$720,260</p>
-                                                        </div>
-                                                    </div>
-                                                </li>
-                                                <li>
-                                                    <div class="inner">
-                                                        <div class="icon">
-                                                            <span class="icon-right-arrow"></span>
-                                                        </div>
-                                                        <div class="text">
-                                                            <a href="#">Total Amount Payble</a>
-                                                            <p>$720,260</p>
-                                                        </div>
-                                                    </div>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
-
-
-                        </div>
-                        <!--End Tabs Content Box-->
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<!--End EMI Calculator Area-->
 <!--Start slogan area-->
 <section class="slogan-area">
     <div class="container">
         <div class="slogan-content-box">
             <div class="slogan-content-box-bg"
-                 style="background-image: url(../../wwwroot/User/assets/images/backgrounds/slogan-content-box-bg.jpg);"></div>
+                 style="background-image: url(../User/assets/images/backgrounds/slogan-content-box-bg.jpg);"></div>
             <div class="inner-title">
                 <h2>Experience a New Digital World.</h2>
                 <p>Mobile banking application with new & exciting features.</p>

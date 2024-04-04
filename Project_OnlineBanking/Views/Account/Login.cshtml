@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Finbank || Responsive HTML 5 Template</title>
+    <title>Finbank || Login</title>
     <!-- Favicons Icons -->
     <link rel="apple-touch-icon" sizes="180x180" href="~/User/assets/images/favicons/apple-touch-icon.png" />
     <link rel="icon" type="image/png" sizes="32x32" href="~/User/assets/images/favicons/favicon-32x32.png" />
@@ -51,27 +51,27 @@
     <section>
         <div class="form-box">
             <div class="form-value">
-                <form action="">
+                <form method="post" asp-controller="account" asp-action="login">
                     <div class="logo-box"> 
                         <img src="~/User/assets/images/resources/logo-1.png" alt="Awesome Logo" title="">
                     </div>
                     <div class="inputbox">
-                        <ion-icon name="call-outline"></ion-icon>
-                        <input type="email" required>
-                        <label for="">Email</label>
+                        <ion-icon name="person-outline"></ion-icon>
+                        <input type="text" name="username" required>
+                        <label>Username</label>
                     </div>
                     <div class="inputbox">
                         <ion-icon name="lock-closed-outline"></ion-icon>
-                        <input type="password" required>
-                        <label for="">Password</label>
+                        <input type="password" name="password" required>
+                        <label>Password</label>
                     </div>
-                    <div class="forget">
-                        <a asp-controller="home" asp-action="index">Forget Password</a></label>
+                    <button type="submit">Login</button>
+                    <div class="forget"><a asp-controller="home" asp-action="index">Forget Password</a>
                     </div>
-                    <button>Log in</button>
                     <div class="register">
-                        <p>Don't have a account <a href="#">Register</a></p>
+                        <p>Don't have a account <a asp-controller="account" asp-action="register">Register</a></p>
                     </div>
+                    @TempData["msg"]
                 </form>
             </div>
         </div>

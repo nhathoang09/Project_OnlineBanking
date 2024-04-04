@@ -1,8 +1,20 @@
+using Microsoft.EntityFrameworkCore;
+using Project_OnlineBanking.Models;
+using Project_OnlineBanking.Services;
+
 var builder = WebApplication.CreateBuilder(args);
 
+var connectionString = builder.Configuration["ConnectionStrings:DefaultConnection"];
+builder.Services.AddDbContext<DatabaseContext>(option => option.UseLazyLoadingProxies().UseSqlServer(connectionString));
+
 builder.Services.AddControllersWithViews();
+builder.Services.AddScoped<UserService, UserServiceImpl>();
+
+builder.Services.AddSession();
 
 var app = builder.Build();
+
+app.UseSession();
 
 app.UseStaticFiles();
 
