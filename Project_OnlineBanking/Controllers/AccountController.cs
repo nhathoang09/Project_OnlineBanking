@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.IdentityModel.Tokens;
 using Project_OnlineBanking.Models;
 using Project_OnlineBanking.Services;
 
@@ -9,10 +8,12 @@ namespace Project_OnlineBanking.Controllers
     public class AccountController : Controller
     {
         private UserService userService;
+        private TransactionService transactionService;
 
-        public AccountController(UserService _userService)
+        public AccountController(UserService _userService, TransactionService _transactionService)
         {
             userService = _userService;
+            transactionService = _transactionService;
         }
 
         [Route("~/")]
@@ -105,6 +106,38 @@ namespace Project_OnlineBanking.Controllers
                 return RedirectToAction("banknumber");
             }
 
+        }
+
+        [HttpPost]
+        [Route("transfer")]
+        public IActionResult Transfer(string receiver, decimal amount, string message)
+        {
+            string sender = userService.findByBankId((int)HttpContext.Session.GetInt32("bankId")).AccountNumber;
+            transactionService.TransferMoney(sender, receiver, amount, message);
+            return View("OTP");
+
+        }
+
+        /*[Route("otp")]
+        public IActionResult OTP()
+        {
+            return View("OTP");
+        }*/
+
+        [HttpPost]
+        [Route("otp")]
+        public IActionResult OTP(string otp)
+        {
+            string sender = userService.findByBankId((int)HttpContext.Session.GetInt32("bankId")).AccountNumber;
+            if(transactionService.mailOTP(sender) == otp)
+            {
+                TempData["msg"] = "True";
+            }
+            else
+            {
+                TempData["msg"] = "False";
+            }
+            return RedirectToAction("index", "home");
         }
     }
 }

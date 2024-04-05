@@ -9,6 +9,8 @@ builder.Services.AddDbContext<DatabaseContext>(option => option.UseLazyLoadingPr
 
 builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<UserService, UserServiceImpl>();
+builder.Services.AddScoped<TransactionService, TransactionServiceImpl>();
+builder.Services.AddScoped<MailService, MailServiceImpl>();
 
 builder.Services.AddSession();
 

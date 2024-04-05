@@ -1,6 +1,5 @@
 ﻿using Project_OnlineBanking.Models;
 using System.Diagnostics;
-using System.Numerics;
 
 namespace Project_OnlineBanking.Services
 {
@@ -12,6 +11,8 @@ namespace Project_OnlineBanking.Services
         {
             db = _db;
         }
+
+
         public bool Login(string username, string password)
         {
             var account = db.Accounts.SingleOrDefault(a => a.Username == username);
@@ -62,6 +63,18 @@ namespace Project_OnlineBanking.Services
             {
                 Debug.WriteLine(ex.Message);
                 return false;
+            }
+        }
+
+        public string findFullnameByAccnum(string accnum)
+        {
+            try
+            {
+                var accId = db.BankAccounts.Where(u => u.AccountNumber == accnum).SingleOrDefault().AccountId;
+                return db.Accounts.Where(i => i.AccountId == accId).FirstOrDefault().FullName;
+            }catch (Exception ex)
+            {
+                return "Account number does not exist";
             }
         }
     }

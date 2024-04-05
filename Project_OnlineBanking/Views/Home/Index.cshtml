@@ -1,4 +1,5 @@
 ﻿@inject Project_OnlineBanking.Services.UserService userService;
+@model Project_OnlineBanking.Models.Transaction
 @{
     Layout = "~/Views/Shared/_UserLayout.cshtml";
 }
@@ -198,53 +199,45 @@
                             <!--Tab-->
                             <div class="tab-content-box-item tab-content-box-item-active" id="home-loan">
                                 <div class="emi-calculator-tab-content-box-item">
-
-                                    <div class="range-box">
-                                        <div class="row">
-                                            <div class="col-lg-12 column">
-                                                <div class="price-range-box">
-                                                    <div class="inner">
-                                                        <h4>Account Number</h4>
-                                                        <h3>@ViewBag.banknumber</h3>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="col-lg-12 column">
-                                                <div class="loan-term-range-box">
-                                                    <div class="inner">
-                                                        <h4>Loan Term <span>(Years)</span></h4>
-                                                        <div class="loan-term-range-slider"></div>
-                                                        <div class="range-input">
-                                                            <div class="input">
-                                                                <input type="text" class="loan-term-range"
-                                                                       name="field-name" readonly="">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="right-box">
-                                                        <h5>20Yrs</h5>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="col-lg-12 column">
-                                                <div class="interest-rate-range-box">
-                                                    <div class="inner">
-                                                        <h4>Interest Rate</h4>
-                                                        <div class="interest-rate-range-slider"></div>
-                                                        <div class="range-input">
-                                                            <div class="input">
-                                                                <input type="text" class="interest-rate-range"
-                                                                       name="field-name" readonly="">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="right-box">
-                                                        <h5>8%</h5>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                    <div class="emi-calculator-output-box clearfix">
+                                        <div class="features-style2-text-box">
+                                            <ul>
+                                                @if (ViewBag.banknumber == null)
+                                                {
+                                                    <li>
+                                                        <a asp-controller="account" asp-action="banknumber">
+                                                            Get Account Number Now
+                                                            <span class="icon-right-arrow"></span>
+                                                        </a>
+                                                    </li>
+                                                }
+                                                else
+                                                {
+                                                    <li>
+                                                        <a asp-controller="account" asp-action="middle">
+                                                            Change account number
+                                                            <h5>
+                                                                @ViewBag.fullname
+                                                                <br />
+                                                                @ViewBag.banknumber
+                                                            </h5>
+                                                            <span class="icon-right-arrow"></span>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">
+                                                            Funds Transfer
+                                                            <span class="icon-right-arrow"></span>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">
+                                                            Delete Account Number
+                                                            <span class="icon-right-arrow"></span>
+                                                        </a>
+                                                    </li>
+                                                }
+                                            </ul>
                                         </div>
                                     </div>
 
@@ -256,7 +249,7 @@
                                                 </div>
                                                 <div class="inner-title">
                                                     <h4>Bank Number</h4>
-                                                    @if (ViewBag.banknumber == "0")
+                                                    @if (ViewBag.banknumber == null)
                                                     {
                                                         <h3>
                                                             You dont have an account number yet, <a asp-controller="account" asp-action="banknumber">Get It Now</a>
@@ -515,98 +508,65 @@
 <section class="features-style1-area">
     <div class="container">
         <div class="sec-title text-center">
-            <h2>Bank for a Better Tomorrow</h2>
+            <h2>Funds Transfer</h2>
             <div class="sub-title">
-                <p>Committed to helping our customers succeed.</p>
+                <p>To</p>
             </div>
         </div>
+        
         <div class="features-style1-content">
-            <ul class="clearfix">
-                <!--Start Single Features Style1 Box-->
-                <li>
-                    <div class="single-features-style1-box">
-                        <div class="shape-left">
-                            <img src="~/User/assets/images/shapes/shape-1.png" alt="">
+            <div class="contact-form">
+                <form method="post" asp-controller="account" asp-action="otp">
+                    <div class="form-group">
+                        <label>Account Number</label>
+                        <div class="input-box">
+                            <input type="text" required="" id="accnum" name="receiver">
                         </div>
-                        <div class="shape-bottom">
-                            <img src="~/User/assets/images/shapes/shape-2.png" alt="">
-                        </div>
-                        <div class="counting-box">
-                            <div class="counting-box-bg"
-                                 style="background-image: url(../User/assets/images/shapes/counting-box-bg.png);"></div>
-                            <h3>01</h3>
-                        </div>
-                        <div class="text-box">
-                            <h4>Fixed Depost</h4>
-                            <h3>Fixed Returns with Peace of Mind</h3>
-                            <p>Must explain to you how work mistaken give you complete guide.</p>
-                            <div class="btn-box">
-                                <a href="#">
-                                    Read More
-                                    <i class="fas fa-plus"></i>
-                                </a>
-                            </div>
+                        <script>
+                            document.getElementById("accnum").onblur = function () {
+                                var accnum = document.getElementById("accnum").value;
+                                $.ajax({
+                                    url: '/ajax/fullnameByAccnum',
+                                    type: 'POST',
+                                    data: { accnum: accnum },
+                                    success: function (result) {
+                                        $('#fullname').val(result)
+                                    }
+                                });
+                            };
+                        </script>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Fullname</label>
+                        <div class="input-box">
+                            <input type="text" id="fullname">
                         </div>
                     </div>
-                </li>
-                <!--End Single Features Style1 Box-->
-                <!--Start Single Features Style1 Box-->
-                <li>
-                    <div class="single-features-style1-box">
-                        <div class="shape-left">
-                            <img src="~/User/assets/images/shapes/shape-1.png" alt="">
-                        </div>
-                        <div class="shape-bottom">
-                            <img src="~/User/assets/images/shapes/shape-2.png" alt="">
-                        </div>
-                        <div class="counting-box">
-                            <div class="counting-box-bg"
-                                 style="background-image: url(../User/assets/images/shapes/counting-box-bg.png);"></div>
-                            <h3>02</h3>
-                        </div>
-                        <div class="text-box">
-                            <h4>Current Account</h4>
-                            <h3>Banking Solutions for a Business</h3>
-                            <p>No one rejects dislikes avoids pleasures because it is pleasure trivial.</p>
-                            <div class="btn-box">
-                                <a href="#">
-                                    Read More
-                                    <i class="fas fa-plus"></i>
-                                </a>
-                            </div>
+
+                    <div class="form-group">
+                        <label>Amount</label>
+                        <div class="input-box">
+                            <input type="text" required="" name="amount">
                         </div>
                     </div>
-                </li>
-                <!--End Single Features Style1 Box-->
-                <!--Start Single Features Style1 Box-->
-                <li>
-                    <div class="single-features-style1-box">
-                        <div class="shape-left">
-                            <img src="~/User/assets/images/shapes/shape-1.png" alt="">
-                        </div>
-                        <div class="shape-bottom">
-                            <img src="~/User/assets/images/shapes/shape-2.png" alt="">
-                        </div>
-                        <div class="counting-box">
-                            <div class="counting-box-bg"
-                                 style="background-image: url(../User/assets/images/shapes/counting-box-bg.png);"></div>
-                            <h3>03</h3>
-                        </div>
-                        <div class="text-box">
-                            <h4>Mutual Funds</h4>
-                            <h3>Our Strategies for Better Returns</h3>
-                            <p>Except obtain some advantages from it But who has any right to find enjoy.</p>
-                            <div class="btn-box">
-                                <a href="#">
-                                    Read More
-                                    <i class="fas fa-plus"></i>
-                                </a>
-                            </div>
+
+                    <div class="form-group">
+                        <label>Message</label>
+                        <div class="input-box">
+                            <textarea name="message">@ViewBag.fullname funds transfer</textarea>
                         </div>
                     </div>
-                </li>
-                <!--End Single Features Style1 Box-->
-            </ul>
+
+                    <div class="button-box">
+                        <button class="btn-one" type="submit" href="../View/Account/OTP.cshtml">
+                            <span class="txt">
+                                funds transfer
+                            </span>
+                        </button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 </section>

@@ -27,9 +27,16 @@ namespace Project_OnlineBanking.Controllers
             }else
             {
                 ViewBag.balance = 0;
-                ViewBag.banknumber = 0;
+                ViewBag.banknumber = null;
             }
             return View();
+        }
+
+
+        [Route("contact")]
+        public IActionResult Contact()
+        {
+            return View("Contact");
         }
     }
 }

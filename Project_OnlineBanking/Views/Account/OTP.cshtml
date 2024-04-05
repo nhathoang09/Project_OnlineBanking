@@ -1,10 +1,9 @@
-﻿@inject Project_OnlineBanking.Services.UserService userService;
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Finbank || Middle</title>
+    <title>Finbank || OTP</title>
     <!-- Favicons Icons -->
     <link rel="apple-touch-icon" sizes="180x180" href="~/User/assets/images/favicons/apple-touch-icon.png" />
     <link rel="icon" type="image/png" sizes="32x32" href="~/User/assets/images/favicons/favicon-32x32.png" />
@@ -45,32 +44,29 @@
     <!-- Template styles -->
     <link rel="stylesheet" href="~/User/assets/css/style.css" />
     <link rel="stylesheet" href="~/User/assets/css/responsive.css" />
-    <link rel="stylesheet" href="~/User/assets/css/middle.css">
+    <link rel="stylesheet" href="~/User/assets/css/otp.css">
 
 </head>
 <body>
     <section>
         <div class="form-box">
             <div class="form-value">
-                <form method="post" asp-controller="account" asp-action="middle">
-                    <div class="inputbox">
-                        <h2>Account Number</h2>
-                        <table>
-                            <tr>
-                                <td>
-                                    <select name="bankId" class="select-box">
-                                        @foreach (var accnum in ViewBag.accnums)
-                                        {
-                                            <option value="@accnum.BankAccountId">@accnum.AccountNumber</option>
-                                        }
-                                    </select>
-                                </td>
-                                <td>
-                                    <button class="btn-y" type="submit">Continue</button>
-                                </td>
-                            </tr>
-                        </table>
+                <form method="post" asp-controller="account" asp-action="transfer">
+                    <div class="logo-box"> 
+                        <img src="~/User/assets/images/resources/logo-1.png" alt="Awesome Logo" title="">
                     </div>
+                    <br />
+                    <h2>OTP has been sent to your mail</h2>
+                    <br />
+                    <input type="text" maxlength="1" />
+                    <input type="text" maxlength="1" />
+                    <input class="space" type="text" maxlength="1" />
+                    <input type="text" maxlength="1" />
+                    <input type="text" maxlength="1" />
+                    <input type="text" maxlength="1" />
+                    <br />
+                    <br />
+                    <button type="submit">Confirm</button>
                 </form>
             </div>
         </div>

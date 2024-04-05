@@ -4,11 +4,12 @@ namespace Project_OnlineBanking.Services
 {
     public interface UserService
     {
-        public bool Login(string username, string password);
-        public bool Create(Account account);
-        public Account findByUsername(string username);
-        public List<BankAccount> findByAccId(int accountId);
-        public BankAccount findByBankId(int id);
-        public bool BankNumber(BankAccount bankacc);
+        public bool Login(string username, string password); //Đăng nhập
+        public bool Create(Account account);// Tạo tài khoản cho user
+        public Account findByUsername(string username);// Tìm tài khoản bằng username
+        public List<BankAccount> findByAccId(int accountId);// Tìm danh sách các tài khoản bằng Id Account
+        public BankAccount findByBankId(int id);// Tìm số tài khoản bằng Id
+        public bool BankNumber(BankAccount bankacc);// Tạo số tài khoản cho tài khoản 
+        public string findFullnameByAccnum(string accnum);// Tìm tên tài khoản bằng số tài khoản
     }
 }
