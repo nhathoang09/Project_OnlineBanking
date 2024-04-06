@@ -5,6 +5,7 @@
 }
 
 
+
 <!--Main Slider Start-->
 <section class="main-slider main-slider-style1">
     <div class="swiper-container thm-swiper__slider" data-swiper-options='{"slidesPerView": 1, "loop": true,
@@ -225,7 +226,7 @@
                                                         </a>
                                                     </li>
                                                     <li>
-                                                        <a href="#">
+                                                        <a href="#funds">
                                                             Funds Transfer
                                                             <span class="icon-right-arrow"></span>
                                                         </a>
@@ -508,33 +509,20 @@
 <section class="features-style1-area">
     <div class="container">
         <div class="sec-title text-center">
-            <h2>Funds Transfer</h2>
+            <h2 id="funds">Funds Transfer</h2>
             <div class="sub-title">
-                <p>To</p>
+                <p>Online Banking</p>
             </div>
         </div>
         
         <div class="features-style1-content">
             <div class="contact-form">
-                <form method="post" asp-controller="account" asp-action="otp">
+                <form method="post">
                     <div class="form-group">
                         <label>Account Number</label>
                         <div class="input-box">
                             <input type="text" required="" id="accnum" name="receiver">
                         </div>
-                        <script>
-                            document.getElementById("accnum").onblur = function () {
-                                var accnum = document.getElementById("accnum").value;
-                                $.ajax({
-                                    url: '/ajax/fullnameByAccnum',
-                                    type: 'POST',
-                                    data: { accnum: accnum },
-                                    success: function (result) {
-                                        $('#fullname').val(result)
-                                    }
-                                });
-                            };
-                        </script>
                     </div>
 
                     <div class="form-group">
@@ -554,12 +542,12 @@
                     <div class="form-group">
                         <label>Message</label>
                         <div class="input-box">
-                            <textarea name="message">@ViewBag.fullname funds transfer</textarea>
+                            <textarea style="white-space: pre;" name="message">@ViewBag.fullname funds transfer</textarea>
                         </div>
                     </div>
 
                     <div class="button-box">
-                        <button class="btn-one" type="submit" href="../View/Account/OTP.cshtml">
+                        <button type="button" onclick="mailotp(); otp()" class="btn-one" id="butsub">
                             <span class="txt">
                                 funds transfer
                             </span>
@@ -2770,3 +2758,45 @@
     </div>
 </section>
 <!--End slogan area-->
+
+
+<script>
+    string otp = '';
+    document.getElementById("accnum").onblur = function () {
+        var accnum = document.getElementById("accnum").value;
+        $.ajax({
+            url: '/ajax/fullnameByAccnum',
+            type: 'POST',
+            data: { accnum: accnum },
+            success: function (result) {
+                $('#fullname').val(result)
+            }
+        });
+    };
+    $('#butsub').click(function () {
+        $.ajax({
+            url: '/ajax/mailOTP',
+            success: function (res) {
+                console.log(res.value)
+            }
+        });
+    }
+
+    function otp(){
+        swal.fire({
+            title: 'OTP',
+            input: 'text',
+            inputPlaceholder: '*  *  *  *  *  *',
+            showCancelButton: true,
+            confirmButtonText: 'Confirm',
+            cancelButtonText: 'Cancel',
+            inputValidator: (value) => {
+                if (!value) {
+                    return 'Please enter OTP!';
+                }
+            }
+        }).then((result) => {
+            alert(result)
+        });
+    };
+</script>

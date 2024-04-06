@@ -104,7 +104,5 @@ namespace Project_OnlineBanking.Services
                 Debug.WriteLine(ex.Message);
             };
         }
-
-        
     }
 }

@@ -45,13 +45,30 @@
     <link rel="stylesheet" href="~/User/assets/css/style.css" />
     <link rel="stylesheet" href="~/User/assets/css/responsive.css" />
     <link rel="stylesheet" href="~/User/assets/css/otp.css">
-
+    <script>
+        function otp(){
+            swal.fire({
+                title: 'Are you sure?',
+                text: 'You will not be able to recover this imaginary file!',
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Yes, delete it!',
+                cancelButtonText: 'No, keep it'
+            }).then(function () {
+                swal('Deleted!', 'Your imaginary file has been deleted.', 'success');
+            }, function (dismiss) {
+                if (dismiss === 'cancel') {
+                    swal('Cancelled', 'Your imaginary file is safe :)', 'error');
+                }
+            });
+        }
+    </script>
 </head>
 <body>
     <section>
         <div class="form-box">
             <div class="form-value">
-                <form method="post" asp-controller="account" asp-action="transfer">
+                @* <form>
                     <div class="logo-box"> 
                         <img src="~/User/assets/images/resources/logo-1.png" alt="Awesome Logo" title="">
                     </div>
@@ -67,11 +84,13 @@
                     <br />
                     <br />
                     <button type="submit">Confirm</button>
-                </form>
+                </form> *@
+                <button onclick="otp()">Confirm</button>
             </div>
         </div>
     </section>
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 </html>

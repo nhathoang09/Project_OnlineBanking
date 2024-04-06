@@ -118,13 +118,13 @@ namespace Project_OnlineBanking.Controllers
 
         }
 
-        /*[Route("otp")]
+        [Route("otp")]
         public IActionResult OTP()
         {
             return View("OTP");
-        }*/
+        }
 
-        [HttpPost]
+        /*[HttpPost]
         [Route("otp")]
         public IActionResult OTP(string otp)
         {
@@ -138,6 +138,6 @@ namespace Project_OnlineBanking.Controllers
                 TempData["msg"] = "False";
             }
             return RedirectToAction("index", "home");
-        }
+        }*/
     }
 }
