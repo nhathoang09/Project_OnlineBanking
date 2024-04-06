@@ -21,6 +21,8 @@ public partial class DatabaseContext : DbContext
 
     public virtual DbSet<Cheque> Cheques { get; set; }
 
+    public virtual DbSet<Helper> Helpers { get; set; }
+
     public virtual DbSet<Request> Requests { get; set; }
 
     public virtual DbSet<Role> Roles { get; set; }
@@ -28,6 +30,10 @@ public partial class DatabaseContext : DbContext
     public virtual DbSet<SupportTicket> SupportTickets { get; set; }
 
     public virtual DbSet<Transaction> Transactions { get; set; }
+
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
+        => optionsBuilder.UseSqlServer("Server=DINO;Database=onlinebanking;user id=sa;password=280903;trusted_connection=true;encrypt=false");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -95,6 +101,19 @@ public partial class DatabaseContext : DbContext
             entity.HasOne(d => d.AccountBank).WithMany(p => p.Cheques)
                 .HasForeignKey(d => d.AccountBankId)
                 .HasConstraintName("FK_Cheques_BankAccounts");
+        });
+
+        modelBuilder.Entity<Helper>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PK__Helper__3214EC27F14C86F7");
+
+            entity.ToTable("Helper");
+
+            entity.Property(e => e.Id).HasColumnName("ID");
+            entity.Property(e => e.Content).HasMaxLength(255);
+            entity.Property(e => e.ErrorCode)
+                .HasMaxLength(50)
+                .IsUnicode(false);
         });
 
         modelBuilder.Entity<Request>(entity =>

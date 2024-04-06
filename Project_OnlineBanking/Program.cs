@@ -11,6 +11,7 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<UserService, UserServiceImpl>();
 builder.Services.AddScoped<TransactionService, TransactionServiceImpl>();
 builder.Services.AddScoped<MailService, MailServiceImpl>();
+builder.Services.AddScoped<SupportService, SupportServiceImpl>();
 
 builder.Services.AddSession();
 
