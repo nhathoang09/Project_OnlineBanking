@@ -1,5 +1,4 @@
-﻿
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -161,12 +160,11 @@
                                             </ul>
                                         </li>
                                         <li class="dropdown">
-                                            <a href="#">News</a>
+                                            <a asp-controller="home" asp-action="transaction" asp-route-type="all">Transaction</a>
                                             <ul>
-                                                <li><a href="blog.html">Grid View</a></li>
-                                                <li><a href="blog-2.html">List View</a></li>
-                                                <li><a href="blog-3.html">Large Image</a></li>
-                                                <li><a href="blog-single.html">Single Post</a></li>
+                                                <li><a asp-controller="home" asp-action="transaction" asp-route-type="Transfer">Funds Transfer</a></li>
+                                                <li><a asp-controller="home" asp-action="transaction" asp-route-type="Receive">Receive Funds</a></li>
+                                                <li><a asp-controller="home" asp-action="transaction" asp-route-type="Recharge">Recharge</a></li>
                                             </ul>
                                         </li>
                                         <li>

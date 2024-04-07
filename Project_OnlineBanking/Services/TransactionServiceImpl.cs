@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
+﻿using Castle.Components.DictionaryAdapter.Xml;
 using OtpNet;
 using Project_OnlineBanking.Models;
 using System.Diagnostics;
@@ -66,13 +65,13 @@ namespace Project_OnlineBanking.Services
 
             var from = "lenhath6@gmail.com";
             var subject = "Finbank";
-            var content =   "Dear Customer," +
-                            "Your One Time Passcode for completing your transaction " +
-                            "##transaction## is：## " + int.Parse(result) + " ##" +
-                            "Please use this Passcode to complete your transaction. Do not share this passcode with anyone." +
-                            "Thank you," +
-                            "Finbank" +
-                            "Disclaimer: This email and any files transmitted with it are confidential and intended solely for\r\nthe use of the individual or entity to whom they are addressed.";
+            var content = "<h2>Dear Customer,</h2>" +
+                            "<h3>Your One Time Passcode for completing your transaction</h3>" +
+                            "<h3>Tranaction is：## " + result + " ##</h3>" +
+                            "<h3>Please use this Passcode to complete your transaction. Do not share this passcode with anyone.</h3>" +
+                            "<h3>Thank you,</h3>" +
+                            "<h2><b>Finbank</b></h2>" +
+                            "<h3>Disclaimer: This email and any files transmitted with it are confidential and intended solely for\r\nthe use of the individual or entity to whom they are addressed.</h3>";
             if (mailService.Send(from, to, subject, content))
             {
                 return result;
@@ -90,7 +89,7 @@ namespace Project_OnlineBanking.Services
                 SenderAccountId = senderAccountId,
                 RecipientAccountId = recipientAccountId,
                 Amount = amount,
-                TransactionType = "Funds Transfer",
+                TransactionType = "Banking",
                 Description = message,
                 TransactionDate = DateTime.Now,
             };
@@ -103,6 +102,21 @@ namespace Project_OnlineBanking.Services
             {
                 Debug.WriteLine(ex.Message);
             };
+        }
+
+        public List<Transaction> findByAccountId(int accountId)
+        {
+            return db.Transactions.Where(i => i.SenderAccountId == accountId | i.RecipientAccountId == accountId).OrderByDescending(i => i.TransactionDate).ToList();
+        }
+
+        public List<Transaction> findByTypeTrans(int accountId, string type)
+        {
+            return db.Transactions.Where(i => i.SenderAccountId == accountId & i.TransactionType == type).OrderByDescending(i => i.TransactionDate).ToList();
+        }
+
+        public List<Transaction> findByTypeRec(int accountId, string type)
+        {
+            return db.Transactions.Where(i => i.RecipientAccountId == accountId & i.TransactionType == type).OrderByDescending(i => i.TransactionDate).ToList();
         }
     }
 }

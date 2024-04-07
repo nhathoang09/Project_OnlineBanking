@@ -4,8 +4,6 @@
     Layout = "~/Views/Shared/_UserLayout.cshtml";
 }
 
-
-
 <!--Main Slider Start-->
 <section class="main-slider main-slider-style1">
     <div class="swiper-container thm-swiper__slider" data-swiper-options='{"slidesPerView": 1, "loop": true,
@@ -505,7 +503,7 @@
     </div>
 </section>
 <!--End EMI Calculator Area-->
-<!--Start Features Style1 Area-->
+<!--Start Form Funds-->
 <section class="features-style1-area">
     <div class="container">
         <div class="sec-title text-center">
@@ -547,7 +545,7 @@
                     </div>
 
                     <div class="button-box">
-                        <button type="button" onclick="mailotp(); otp()" class="btn-one" id="butsub">
+                        <button type="button" onclick="mailotp()" class="btn-one" id="butsub">
                             <span class="txt">
                                 funds transfer
                             </span>
@@ -558,7 +556,7 @@
         </div>
     </div>
 </section>
-<!--End Features Style1 Area-->
+<!--End Form Funds-->
 <!--Start Service Style1 Area-->
 <section class="service-style1-area">
     <div class="service-style1-bg" style="background-image: url(../User/assets/images/backgrounds/service-style1.jpg);">
@@ -2761,7 +2759,6 @@
 
 
 <script>
-    string otp = '';
     document.getElementById("accnum").onblur = function () {
         var accnum = document.getElementById("accnum").value;
         $.ajax({
@@ -2773,16 +2770,19 @@
             }
         });
     };
-    $('#butsub').click(function () {
+
+    var otp = "aaa";
+    var temp = "aaa";
+    function mailotp(){
         $.ajax({
             url: '/ajax/mailOTP',
-            success: function (res) {
-                console.log(res.value)
+            data: {
+                otp: otp
+            },
+            success: function (otp) {
+                console.log("otp: " + otp.toString());
             }
         });
-    }
-
-    function otp(){
         swal.fire({
             title: 'OTP',
             input: 'text',
@@ -2796,7 +2796,14 @@
                 }
             }
         }).then((result) => {
-            alert(result)
+            temp = result.value;
+            console.log("result: " + result.value);
+            console.log("temp: " + temp.value);
+            if (otp.toString().localeCompare(result.toString()) == 0){
+                alert("OK");
+            }else{
+                alert(otp.toString().localeCompare(result.toString()));
+            }
         });
     };
 </script>

@@ -1,0 +1,167 @@
+﻿@inject Project_OnlineBanking.Services.UserService userService;
+@{
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+<div class="stricky-header stricked-menu main-menu">
+    <div class="sticky-header__content"></div><!-- /.sticky-header__content -->
+</div><!-- /.stricky-header -->
+<!--Start breadcrumb area-->
+<section class="breadcrumb-area">
+    <div class="breadcrumb-area-bg"
+         style="background-image: url(../User/assets/images/backgrounds/breadcrumb-area-bg-2.jpg);"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="inner-content">
+                    <div class="title" data-aos="fade-right" data-aos-easing="linear" data-aos-duration="500">
+                        <h2>Transaction History</h2>
+                    </div>
+                    <div class="breadcrumb-menu" data-aos="fade-left" data-aos-easing="linear"
+                         data-aos-duration="500">
+                        <ul>
+                            <li><a asp-controller="home" asp-action="index">Home</a></li>
+                            <li class="active">Transaction History</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--End breadcrumb area-->
+<!--Start Blog Page Three-->
+<section class="blog-page-three">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-xl-9">
+                <div class="blog-page-content-box">
+
+                    <!--Start Single blog Style3-->
+                    @foreach(var trans in Model){
+                        <div class="single-blog-style1 single-blog-style1--style3">
+                            <div class="image-colum">
+                                <div class="img-holder">
+                                    <div class="category-date-box">
+                                        <div class="category">
+                                            <span class="icon-play-button-1"></span>
+                                            <h5>@trans.TransactionType</h5>
+                                        </div>
+                                        <div class="date">
+                                            <h6>@trans.TransactionDate.ToString("dd/MM/yyyy HH:mm:ss")</h6>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="text-colum">
+                                <div class="text-holder">
+                                    <h3 class="blog-title">
+                                        Amount:
+                                        @if (ViewBag.type == "all")
+                                        {
+                                            if (ViewBag.bankId == trans.RecipientAccountId)
+                                            {
+                                                <a style="color:#008DDA">+@trans.Amount</a>
+                                            }
+                                            else
+                                            {
+                                                <a style="color:#FF8080">-@trans.Amount</a>
+                                            }
+                                        }
+                                        else if (ViewBag.type == "Transfer")
+                                        {
+                                            <a style="color:#FF8080">-@trans.Amount</a>
+                                        }
+                                        else if (ViewBag.type == "Receive" | ViewBag.type == "Recharge")
+                                        {
+                                            <a style="color:#008DDA">+@trans.Amount</a>
+                                        }
+                                    </h3>
+                                    <div class="text">
+                                        <h4>Content</h4>
+                                        <p>
+                                            @trans.Description. To:@userService.findByBankId(trans.RecipientAccountId).AccountNumber
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        @* <div class="row">
+                            <div class="col-xl-12">
+                                <div class="pagination">
+                                    @Html.PagedListPager(Model, page => Url.Action("Transaction", new {Page} ))
+                                </div>
+                            </div>
+                        </div> *@
+                    }
+                    <!--End Single blog Style3-->
+                </div>
+            </div>
+
+            <!--Start Thm Sidebar Box-->
+            <div class="col-xl-3 col-lg-7">
+                <div class="thm-sidebar-box">
+                    <!--Start Single Sidebar Box-->
+                    <div class="single-sidebar-box">
+                        <div class="sidebar-title">
+                            <div class="dot-box"></div>
+                            <h3>Search</h3>
+                        </div>
+                        <div class="sidebar-search-box">
+                            <form class="search-form" action="#">
+                                <input placeholder="Keyword" type="text">
+                                <button type="submit">
+                                    <i class="icon-search"></i>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                    <!--End Single Sidebar Box-->
+                    <!--Start Single Sidebar Box-->
+                    <div class="single-sidebar-box">
+                        <div class="sidebar-title">
+                            <div class="dot-box"></div>
+                            <h3>Categories</h3>
+                        </div>
+                        <ul class="sidebar-categories-box">
+                            <li><a href="#">Announcements</a></li>
+                            <li><a href="#">Banking</a></li>
+                            <li><a href="#">Finance</a></li>
+                            <li><a href="#">Investment</a></li>
+                            <li><a href="#">Press Release</a></li>
+                            <li><a href="#">Technology</a></li>
+                        </ul>
+                    </div>
+                    <!--End Single Sidebar Box-->
+                    <!--Start Sidebar Banner Box-->
+                    <div class="sidebar-banner-box">
+                        <div class="top-box float-bob-y"></div>
+                        <div class="bottom-box float-bob-x"></div>
+                        <div class="logo-box">
+                            <a href="index.html">
+                                <img src="~/User/assets/images/resources/banner-logo-1.png" alt="">
+                            </a>
+                        </div>
+                        <h3>Small Steps to Your<br> Better Future.</h3>
+                        <ul>
+                            <li><span class="icon-checkbox-mark"></span> The well master-builder</li>
+                            <li><span class="icon-checkbox-mark"></span> On the other hand</li>
+                        </ul>
+                        <div class="btns-box">
+                            <a class="btn-one" asp-controller="home" asp-action="contact">
+                                <span class="txt">Get Support</span>
+                            </a>
+                        </div>
+                    </div>
+                    <!--End Sidebar Banner Box-->
+                </div>
+            </div>
+            <!--End Thm Sidebar Box-->
+
+
+        </div>
+    </div>
+</section>
+<!--End Blog Page Three-->
