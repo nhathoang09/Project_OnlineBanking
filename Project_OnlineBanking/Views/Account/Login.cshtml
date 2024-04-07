@@ -46,6 +46,19 @@
     <link rel="stylesheet" href="~/User/assets/css/responsive.css" />
     <link rel="stylesheet" href="~/User/assets/css/login.css">
 
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        var msg = '@TempData["msg"]';
+        if (msg) {
+            setTimeout(() => {
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: "Username Or Password Incorrect!!!",
+                });
+            }, 500);
+        }
+    </script>
 </head>
 <body>
     <section>
@@ -57,7 +70,7 @@
                     </div>
                     <div class="inputbox">
                         <ion-icon name="person-outline"></ion-icon>
-                        <input type="text" name="username" required>
+                        <input type="text" name="username" value="@TempData["username"]" required>
                         <label>Username</label>
                     </div>
                     <div class="inputbox">
@@ -71,7 +84,6 @@
                     <div class="register">
                         <p>Don't have a account <a asp-controller="account" asp-action="register">Register</a></p>
                     </div>
-                    @TempData["msg"]
                 </form>
             </div>
         </div>

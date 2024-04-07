@@ -35,7 +35,8 @@ namespace Project_OnlineBanking.Controllers
             }
             else
             {
-                TempData["msg"] = "Invalid!";
+                TempData["username"] = username;
+                TempData["msg"] = false;
                 return RedirectToAction("Login");
             }
         }
@@ -114,30 +115,8 @@ namespace Project_OnlineBanking.Controllers
         {
             string sender = userService.findByBankId((int)HttpContext.Session.GetInt32("bankId")).AccountNumber;
             transactionService.TransferMoney(sender, receiver, amount, message);
-            return View("OTP");
-
-        }
-
-        [Route("otp")]
-        public IActionResult OTP()
-        {
-            return View("OTP");
-        }
-
-        /*[HttpPost]
-        [Route("otp")]
-        public IActionResult OTP(string otp)
-        {
-            string sender = userService.findByBankId((int)HttpContext.Session.GetInt32("bankId")).AccountNumber;
-            if(transactionService.mailOTP(sender) == otp)
-            {
-                TempData["msg"] = "True";
-            }
-            else
-            {
-                TempData["msg"] = "False";
-            }
             return RedirectToAction("index", "home");
-        }*/
+
+        }
     }
 }

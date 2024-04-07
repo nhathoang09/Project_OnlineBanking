@@ -515,7 +515,7 @@
         
         <div class="features-style1-content">
             <div class="contact-form">
-                <form method="post">
+                <form method="post" class="funds" asp-controller="account" asp-action="transfer">
                     <div class="form-group">
                         <label>Account Number</label>
                         <div class="input-box">
@@ -2771,15 +2771,12 @@
         });
     };
 
-    var otp = "aaa";
-    var temp = "aaa";
-    function mailotp(){
+    function mailotp() {
+        var otp;
         $.ajax({
             url: '/ajax/mailOTP',
-            data: {
-                otp: otp
-            },
-            success: function (otp) {
+            success: function (mail) {
+                otp = mail;
                 console.log("otp: " + otp.toString());
             }
         });
@@ -2796,14 +2793,21 @@
                 }
             }
         }).then((result) => {
-            temp = result.value;
+            console.log("otp: " + otp.toString());
             console.log("result: " + result.value);
-            console.log("temp: " + temp.value);
-            if (otp.toString().localeCompare(result.toString()) == 0){
-                alert("OK");
-            }else{
-                alert(otp.toString().localeCompare(result.toString()));
+            if (otp.toString() === result.value) {
+                Swal.fire({
+                    title: "Funds Transfer Success",
+                    text: "Automatically closes after 5 seconds or Click the button to close",
+                    icon: "success"
+                });
+                setTimeout(() => {
+                    $(".funds").submit();
+                }, 5000);
+            } else {
+                Swal.fire('Hủy bỏ', 'Vui lòng kiểm tra lại thông tin.', 'error');
             }
         });
     };
+
 </script>

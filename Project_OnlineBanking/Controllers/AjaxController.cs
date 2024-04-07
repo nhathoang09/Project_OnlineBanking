@@ -33,11 +33,8 @@ namespace Project_OnlineBanking.Controllers
         }
 
         [Route("checkOTP")]
-        public IActionResult CheckOTP(string otp)
+        public IActionResult CheckOTP(string otp, string mail)
         {
-            string sender = userService.findByBankId((int)HttpContext.Session.GetInt32("bankId")).AccountNumber;
-            var BaSender = db.BankAccounts.Where(n => n.AccountNumber == sender).FirstOrDefault();
-            var mail = transactionService.mailOTP(BaSender.Account.Email);
             if (mail == otp)
             {
                 return new JsonResult(true);

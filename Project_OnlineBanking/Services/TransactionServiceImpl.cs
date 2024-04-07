@@ -67,7 +67,7 @@ namespace Project_OnlineBanking.Services
             var subject = "Finbank";
             var content = "<h2>Dear Customer,</h2>" +
                             "<h3>Your One Time Passcode for completing your transaction</h3>" +
-                            "<h3>Tranaction is：## " + result + " ##</h3>" +
+                            "<h3>Transaction is：##" + result + "##</h3>" +
                             "<h3>Please use this Passcode to complete your transaction. Do not share this passcode with anyone.</h3>" +
                             "<h3>Thank you,</h3>" +
                             "<h2><b>Finbank</b></h2>" +
