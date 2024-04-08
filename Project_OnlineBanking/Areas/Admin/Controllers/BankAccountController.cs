@@ -79,10 +79,11 @@ public class BankAccountController : Controller
     public IActionResult TopUpAccount(string accountNumber, string amount)
     {
         var transaction = new Transaction();
+        var bankAccountAdmin = bankAccountService.findById(1);
         var bankAccount = bankAccountService.findByAccountNumber(accountNumber);
         transaction.Amount = Int32.Parse(amount);
-        transaction.RecipientAccountId = bankAccount.AccountId;
-        transaction.SenderAccountId = 1;
+        transaction.RecipientAccountId = bankAccount.BankAccountId;
+        transaction.SenderAccountId = bankAccountAdmin.BankAccountId;
         transaction.Description = "Recharge";
         transaction.TransactionType = "Recharge";
         transaction.TransactionDate = DateTime.Now;

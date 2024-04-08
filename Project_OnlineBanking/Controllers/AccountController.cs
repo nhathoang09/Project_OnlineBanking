@@ -100,25 +100,34 @@ namespace Project_OnlineBanking.Controllers
             HttpContext.Session.SetInt32("fsc", failedSuccessCount);
             if (account.RoleId == 1)
             {
-                if (account !=null)
+                if (account != null)
                 {
-                    var date = DateTime.Now;
-                    var claims = new List<Claim>();
+                    if (userService.Login(username, password))
+                    {
 
-                    var role = roleService.find(account.RoleId);
-                    var roleName = role.Name;
-                    claims.Add(new Claim(ClaimTypes.Name, username));
-                    claims.Add(new Claim(ClaimTypes.Role, roleName));
+                        var date = DateTime.Now;
+                        var claims = new List<Claim>();
 
-                    account.LastLoginSuccess = date;
+                        var role = roleService.find(account.RoleId);
+                        var roleName = role.Name;
+                        claims.Add(new Claim(ClaimTypes.Name, username));
+                        claims.Add(new Claim(ClaimTypes.Role, roleName));
 
-                    var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+                        account.LastLoginSuccess = date;
 
-                    var claimsPrincipal = new ClaimsPrincipal(claimsIdentity);
+                        var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
 
-                    await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, claimsPrincipal);
-                    accountService.create(account);
-                    return RedirectToAction("dashboard");
+                        var claimsPrincipal = new ClaimsPrincipal(claimsIdentity);
+
+                        await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, claimsPrincipal);
+                        accountService.create(account);
+                        return RedirectToAction("dashboard");
+                    }
+                    else
+                    {
+                        return RedirectToAction("login");
+                    }
+
                 }
                 else
                 {

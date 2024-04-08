@@ -46,7 +46,7 @@ namespace Project_OnlineBanking.Controllers
             accountId = 2;
             var transactions = transactionService.findByAccountId(accountId);
 
-            string[] report = new string[12];
+            string[] report = new string[13];
             foreach (var transaction in transactions)
             {
                 DateOnly transactionDateOnly = DateOnly.FromDateTime((DateTime)transaction.TransactionDate);
@@ -55,11 +55,11 @@ namespace Project_OnlineBanking.Controllers
                 {
                     if (month == i)
                     {
-                        report[i-1] = "{ Month: " + i + ", Received: " + transactionService.AmountUp(accountId) + " , Spent: " + transactionService.AmountDown(accountId) + " }";
+                        report[i-1] = i + ", " + transactionService.AmountUp(accountId) + ", " + transactionService.AmountDown(accountId);
                     }
                     else
                     {
-                        report[i-1] = "{ Month: " + i + ", Received: " + 0 + ", Spent: " + 0 + "}";
+                        report[i-1] = "[ " + i + ", " + 0 + ", " + 0 + "]";
                     }
                 }
             }

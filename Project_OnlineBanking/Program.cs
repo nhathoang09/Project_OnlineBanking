@@ -26,8 +26,6 @@ builder.Services.AddSession();
 
 var app = builder.Build();
 
-app.UseAuthentication();
-app.UseAuthorization();
 app.UseSession();
 
 /*app.UseMiddleware<LoginMiddleware>();*/
@@ -44,6 +42,9 @@ app.MapControllerRoute(
     pattern: "{controller}/{action}");
 
 app.UseRouting();
+
+app.UseAuthentication();
+app.UseAuthorization();
 app.UseEndpoints(endpoints =>
 {
     endpoints.MapControllerRoute(

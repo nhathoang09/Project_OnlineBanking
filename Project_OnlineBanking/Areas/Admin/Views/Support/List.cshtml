@@ -1,5 +1,5 @@
 ﻿@{
-    Layout = "~/Areas/Admin/Views/Layout/_AdminLayout.cshtml";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @inject Project_OnlineBanking.Services.AccountService accountService
 <div class="card">
@@ -8,7 +8,7 @@
         <br />
 
         <div>
-            <form method="get" asp-area="admin" asp-controller="support " asp-action="searchStatus">
+            <form method="get" asp-area="admin" asp-controller="support" asp-action="searchStatus">
                 <div class="form-group">
                     <label>TransferEnable</label>
                     <select class="form-control" name="selected">
@@ -34,7 +34,7 @@
                     <th>CreatedAt</th>
                 </tr>
             </thead>
-            @if (ViewBag.support.TicketId != null)
+            @if (ViewBag.supports != null)
             {
                 @foreach (var support in ViewBag.supports)
                 {
@@ -44,7 +44,7 @@
                             <td>@accountService.findById(@support.AccountId).FullName</td>
                             <td>@support.Subject</td>
                             <td>@support.Description</td>
-                            <td><a asp-area="admin" asp-controller="owner" asp-action="editStatus" asp-route-id="@support.TicketId" onclick="return confirm('Are you sure?')">@support.Status</a></td>
+                            <td><a asp-area="admin" asp-controller="support" asp-action="editStatus" asp-route-id="@support.TicketId" onclick="return confirm('Are you sure?')">@support.Status</a></td>
                             
                             <td>
                                 @support.CreatedAt
