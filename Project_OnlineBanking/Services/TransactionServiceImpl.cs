@@ -110,5 +110,27 @@ namespace Project_OnlineBanking.Services
         {
             return db.Transactions.Where(t => t.SenderAccountId == BankAccountId || t.RecipientAccountId == BankAccountId).ToList();
         }
+
+
+        public Decimal AmountUp(int accountId)
+        {
+            return db.Transactions.Where(i => i.RecipientAccountId == accountId).Sum(a => a.Amount);
+        } 
+        public Decimal AmountDown(int accountId)
+        {
+            return db.Transactions.Where(i => i.SenderAccountId == accountId).Sum(a => a.Amount);
+        }
+        public bool topUp(Transaction transaction)
+        {
+            try
+            {
+                db.Transactions.Add(transaction);
+                return db.SaveChanges() > 0;
+            }
+            catch
+            {
+                return false;
+            }
+        }
     }
 }

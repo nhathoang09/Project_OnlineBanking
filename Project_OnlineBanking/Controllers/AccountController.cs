@@ -100,23 +100,30 @@ namespace Project_OnlineBanking.Controllers
             HttpContext.Session.SetInt32("fsc", failedSuccessCount);
             if (account.RoleId == 1)
             {
-                var date = DateTime.Now;
-                var claims = new List<Claim>();
+                if (account !=null)
+                {
+                    var date = DateTime.Now;
+                    var claims = new List<Claim>();
 
-                var role = roleService.find(account.RoleId);
-                var roleName = role.Name;
-                claims.Add(new Claim(ClaimTypes.Name, username));
-                claims.Add(new Claim(ClaimTypes.Role, roleName));
+                    var role = roleService.find(account.RoleId);
+                    var roleName = role.Name;
+                    claims.Add(new Claim(ClaimTypes.Name, username));
+                    claims.Add(new Claim(ClaimTypes.Role, roleName));
 
-                account.LastLoginSuccess = date;
+                    account.LastLoginSuccess = date;
 
-                var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+                    var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
 
-                var claimsPrincipal = new ClaimsPrincipal(claimsIdentity);
+                    var claimsPrincipal = new ClaimsPrincipal(claimsIdentity);
 
-                await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, claimsPrincipal);
-                accountService.create(account);
-                return RedirectToAction("dashboard");
+                    await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, claimsPrincipal);
+                    accountService.create(account);
+                    return RedirectToAction("dashboard");
+                }
+                else
+                {
+                    return RedirectToAction("login");
+                }
             }
             else if (account.RoleId == 2)
             {

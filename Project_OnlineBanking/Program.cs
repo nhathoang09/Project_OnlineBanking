@@ -30,8 +30,8 @@ app.UseAuthentication();
 app.UseAuthorization();
 app.UseSession();
 
-//app.UseMiddleware<LoginMiddleware>();
-app.UseMiddleware<BankIdMiddleware>();
+/*app.UseMiddleware<LoginMiddleware>();*/
+/*app.UseMiddleware<BankIdMiddleware>();*/
 
 app.UseStaticFiles();
 
@@ -43,5 +43,13 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller}/{action}");
 
+app.UseRouting();
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapControllerRoute(
+        name: "default",
+        pattern: "{controller=Home}/{action=Index}/{id?}");
+    endpoints.MapFallbackToController("Index", "Error");
+});
 
 app.Run();

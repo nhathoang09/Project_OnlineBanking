@@ -1,0 +1,68 @@
+﻿@{
+    Layout = "~/Areas/Admin/Views/Layout/_AdminLayout.cshtml";
+}
+@inject Project_OnlineBanking.Services.AccountService accountService
+<div class="card">
+    <div class="card-header">
+        <h3 class="card-title">List Account</h3>
+        <br />
+
+        <div>
+            <form method="get" asp-area="admin" asp-controller="support " asp-action="searchStatus">
+                <div class="form-group">
+                    <label>TransferEnable</label>
+                    <select class="form-control" name="selected">
+                        <option value="all">All</option>
+                        <option value="true">True</option>
+                        <option value="false">False</option>
+                    </select>
+                </div>
+                <input type="submit" value="Submit" />
+            </form>
+        </div>
+    </div>
+    <!-- /.card-header -->
+    <div class="card-body table-responsive p-0">
+        <table class="table table-hover text-nowrap">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Account</th>
+                    <th>Subject</th>
+                    <th>Description</th>
+                    <th>Status</th>
+                    <th>CreatedAt</th>
+                </tr>
+            </thead>
+            @if (ViewBag.support.TicketId != null)
+            {
+                @foreach (var support in ViewBag.supports)
+                {
+                    <tbody>
+                        <tr>
+                            <td>@support.TicketId</td>
+                            <td>@accountService.findById(@support.AccountId).FullName</td>
+                            <td>@support.Subject</td>
+                            <td>@support.Description</td>
+                            <td><a asp-area="admin" asp-controller="owner" asp-action="editStatus" asp-route-id="@support.TicketId" onclick="return confirm('Are you sure?')">@support.Status</a></td>
+                            
+                            <td>
+                                @support.CreatedAt
+                            </td>
+                        </tr>
+                    </tbody>
+                }
+            }
+            else
+            {
+                <tbody>
+                    <tr colspan="7">
+                        <td>No Data</td>
+                    </tr>
+                </tbody>
+            }
+
+        </table>
+    </div>
+    <!-- /.card-body -->
+</div>

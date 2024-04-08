@@ -1,0 +1,49 @@
+﻿@{
+    Layout = "~/Areas/Admin/Views/Layout/_AdminLayout.cshtml";
+}
+
+@model Project_OnlineBanking.Models.Transaction;
+    <div class="card-body">
+    <h3>@TempData["notification"]</h3>
+    @if (ViewBag.account.FullName == null)
+    {
+        <form asp-area="admin" asp-controller="bankaccount" asp-action="check">
+            <div class="form-group">
+                <label>Account Number</label>
+                <input type="text" class="form-control" value="@ViewBag.accountNumber" name="accountNumber" placeholder="Enter Account Number">
+            </div>
+            <div class="card-footer">
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+        </form>
+    }
+    @if (ViewBag.account.FullName != null)
+        {
+        <form asp-area="admin" asp-controller="bankaccount" asp-action="topupAccount">
+        <div class="form-group">
+            <label>Account Number</label>
+            <input type="text" class="form-control" value="@ViewBag.accountNumber" placeholder="Enter Account Number" disabled>
+                <input type="hidden" class="form-control" value="@ViewBag.accountNumber" name="accountNumber" placeholder="Enter Account Number">
+
+        </div>
+            <div class="form-group">
+                <label for="exampleInputPassword1">Name</label>
+                <br />
+                <label>@ViewBag.account.FullName</label>
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPassword1">Phone</label>
+                <br />
+                <label>@ViewBag.account.PhoneNumber</label>
+            </div>
+            
+                <div class="form-group">
+                    <label>Amount</label>
+                    <input type="text" class="form-control" name="amount" placeholder="Enter Amount">
+                </div>
+                <div class="card-footer">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </form>
+        }
+    </div>

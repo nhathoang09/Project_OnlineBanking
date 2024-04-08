@@ -12,5 +12,10 @@ public interface BankAccountService
 
 
     public BankAccount findById(int BankAccountId);
+
+    public BankAccount findByAccountNumber(string accountNumber);
+
+
+    public bool addAmount(BankAccount bankAccount);
     
 }

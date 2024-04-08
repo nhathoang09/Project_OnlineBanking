@@ -10,6 +10,20 @@ public class BankAccountServiceImpl : BankAccountService
     {
         db = _db;
     }
+
+    public bool addAmount(BankAccount bankAccount)
+    {
+        try
+        {
+            db.Entry(bankAccount).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+            return db.SaveChanges() > 0;
+        }
+        catch
+        {
+            return false;
+        }
+    }
+
     public int countAccountBank()
     {
         int count = db.BankAccounts.Count();
@@ -24,7 +38,13 @@ public class BankAccountServiceImpl : BankAccountService
 
     public List<BankAccount> findByAccountId(int AccountId)
     {
+        var accountId = AccountId;
         return db.BankAccounts.Where(b => b.AccountId == AccountId).ToList();
+    }
+
+    public BankAccount findByAccountNumber(string accountNumber)
+    {
+        return db.BankAccounts.SingleOrDefault(b => b.AccountNumber == accountNumber);
     }
 
     public BankAccount findById(int BankAccountId)

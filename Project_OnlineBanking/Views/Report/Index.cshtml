@@ -1,17 +1,17 @@
-﻿@{
+﻿<script src="https://www.gstatic.com/charts/loader.js"></script>
+@{
     Layout = "~/Views/Shared/_UserLayout.cshtml";
 }
-
 <!--Start breadcrumb area-->
 <section class="breadcrumb-area">
     <div class="breadcrumb-area-bg"
-         style="background-image: url(assets/images/backgrounds/breadcrumb-area-bg-5.jpg);"></div>
+         style="background-image: url(../User/assets/images/backgrounds/breadcrumb-area-bg-5.jpg);"></div>
     <div class="container">
         <div class="row">
             <div class="col-xl-12">
                 <div class="inner-content">
                     <div class="title" data-aos="fade-right" data-aos-easing="linear" data-aos-duration="500">
-                        <h2>Card Single</h2>
+                        <h2>Financial Report</h2>
                     </div>
                     <div class="breadcrumb-menu" data-aos="fade-left" data-aos-easing="linear"
                          data-aos-duration="500">
@@ -83,72 +83,75 @@
                 <div class="cards-deails-content-box">
                     <div class="cards-deails-content-1">
                         <div class="inner-title">
-                            <h5>Know About</h5>
-                            <h2>Travel & Hotel Cards</h2>
+                            <h5>Expense Report</h5>
+                            <h2>Report by month</h2>
                         </div>
                         <div class="text">
-                            <p>
-                                Fail in their duty through weakness of will which is the same as saying through
-                                shrinking from toil and pain cases are perfectly simple and easy to distinguish.
-                                In a free hour, when our power of choice the claims off duty or the obligations
-                                business it will frequently occur that pleasures.
-                            </p>
-                            <p>
-                                Through weakness of will which is the same as saying through shrinking from toil
-                                and pain cases are per-
-                                fectly simple and easy to distinguish in a free hour.
-                            </p>
-                        </div>
-                    </div>
+                            <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+                            <script type="text/javascript">
+                                google.charts.load('current', { 'packages': ['bar'] });
+                                google.charts.setOnLoadCallback(drawChart);
 
-                    <div class="cards-deails-content-2">
-                        <div class="row">
-                            <div class="col-xl-6 col-lg-6">
-                                <div class="img-box">
-                                    <ul>
-                                        <li>
-                                            <div class="single-img-box">
-                                                <img src="assets/images/resources/card-details-1.jpg" alt="">
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="single-img-box">
-                                                <img src="assets/images/resources/card-details-2.jpg" alt="">
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="col-xl-6 col-lg-6">
-                                <div class="text-box">
-                                    <ul>
-                                        <li>
-                                            <span class="icon-shield-2"></span>
-                                            <h3>Welcome Bonus</h3>
-                                            <p>
-                                                Holds these matters principles selection
-                                                right some rejects.
-                                            </p>
-                                        </li>
-                                        <li>
-                                            <span class="icon-shield-2"></span>
-                                            <h3>Accelerated Rewards</h3>
-                                            <p>
-                                                Business will frequently occur that pleasure
-                                                have to be repudiated.
-                                            </p>
-                                        </li>
-                                        <li>
-                                            <span class="icon-shield-2"></span>
-                                            <h3>Fuel Surcharge Waiver</h3>
-                                            <p>
-                                                The wise man therefore always holds these
-                                                principle of selection.
-                                            </p>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
+                                function drawChart() {
+                                    var data = google.visualization.arrayToDataTable([
+                                        ['Month', 'Received', 'Spent'],
+                                        ['Jan', 1000, 400],
+                                        ['Feb', 1170, 460],
+                                        ['Mar', 660, 1120],
+                                        ['Apr', 1030, 540],
+                                        ['May', 1030, 540],
+                                        ['Jun', 1030, 540],
+                                        ['Jul', 1030, 540],
+                                        ['Aug', 1030, 540],
+                                        ['Sep', 1030, 540],
+                                        ['Oct', 1030, 540],
+                                        ['Nov', 1030, 540],
+                                        ['Dec', 1030, 540]
+                                    ]);
+
+                                    var options = {
+                                        chart: {
+                                            title: 'Company Performance',
+                                            subtitle: 'Sales, Expenses, and Profit: 2014-2017',
+                                        }
+                                    };
+
+                                    var chart = new google.charts.Bar(document.getElementById('columnchart_material'));
+
+                                    chart.draw(data, google.charts.Bar.convertOptions(options));
+                                }
+                            </script>
+                            @* <div id="chart_div"></div>
+                            <script>
+                                var jsonData = $.ajax({
+                                    type: "GET",
+                                    url: "/ajax/chart",
+                                    dataType: "json",
+                                    async: false
+                                }).responseText;
+                                console.log(jsonData);
+
+                                // Chuyển dữ liệu thành đối tượng DataTable của Google Charts
+                                var data = new google.visualization.DataTable(jsonData);
+
+                                // Tùy chỉnh biểu đồ
+                                var options = {
+                                    title: "Biểu đồ dữ liệu",
+                                    width: 600,
+                                    height: 400
+                                    // Thêm các tùy chọn khác nếu cần
+                                };
+
+                                // Vẽ biểu đồ
+                                var chart = new google.visualization.ColumnChart(document.getElementById("chart_div"));
+                                chart.draw(data, options);
+                                google.charts.setOnLoadCallback(function () {
+                                    // Gọi hàm vẽ biểu đồ ở đây
+                                    drawChart();
+                                });
+                            </script> *@
+
+                            <div id="columnchart_material" style="width: 800px; height: 500px;"></div>
                         </div>
                     </div>
 
@@ -251,7 +254,7 @@
                                 <div class="single-offer-box">
                                     <div class="top">
                                         <div class="offer-logo">
-                                            <img src="assets/images/resources/offer-logo-1.png" alt="">
+                                            <img src="~/User/assets/images/resources/offer-logo-1.png" alt="">
                                         </div>
                                         <div class="date-box">
                                             <p>Till: 25th Jun’22</p>
@@ -278,7 +281,7 @@
                                 <div class="single-offer-box">
                                     <div class="top">
                                         <div class="offer-logo">
-                                            <img src="assets/images/resources/offer-logo-2.png" alt="">
+                                            <img src="~/User/assets/images/resources/offer-logo-2.png" alt="">
                                         </div>
                                         <div class="date-box">
                                             <p>Till: 10th Jul’22</p>

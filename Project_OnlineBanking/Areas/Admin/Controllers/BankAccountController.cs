@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Project_OnlineBanking.Models;
 using Project_OnlineBanking.Services;
 
 namespace AccountBanking.Areas.Admin.Controllers;
@@ -46,5 +47,51 @@ public class BankAccountController : Controller
     {
         ViewBag.transactions = transactionService.findByBankAccountId(bankAccountId);
         return View("Transaction");
+    }
+
+    [Route("topUp")]
+    public IActionResult TopUp(int bankAccountId)
+    {
+        ViewBag.account = new Account();
+        return View("TopUp");
+    }
+
+    [Route("check")]
+    public IActionResult Check(string accountNumber)
+    {
+        var bankAccount = bankAccountService.findByAccountNumber(accountNumber);
+        if (bankAccount != null)
+        {
+            var account = accountService.findById(bankAccount.AccountId);
+            ViewBag.account = account;
+            ViewBag.accountNumber = accountNumber;
+            return View("TopUp", new Transaction());
+        }
+        else
+        {
+            TempData["msg"] = "Not exist";
+            ViewBag.account = new Account();
+        }
+        return View("TopUp");
+    }
+
+    [Route("topupAccount")]
+    public IActionResult TopUpAccount(string accountNumber, string amount)
+    {
+        var transaction = new Transaction();
+        var bankAccount = bankAccountService.findByAccountNumber(accountNumber);
+        transaction.Amount = Int32.Parse(amount);
+        transaction.RecipientAccountId = bankAccount.AccountId;
+        transaction.SenderAccountId = 1;
+        transaction.Description = "Recharge";
+        transaction.TransactionType = "Recharge";
+        transaction.TransactionDate = DateTime.Now;
+        if (transactionService.topUp(transaction))
+        {
+            bankAccount.Balance += Int32.Parse(amount);
+            bankAccountService.addAmount(bankAccount);
+            TempData["notification"] = "Success";
+        }
+        return RedirectToAction("topUp");
     }
 }
