@@ -1,5 +1,4 @@
-﻿using Castle.Components.DictionaryAdapter.Xml;
-using OtpNet;
+﻿using OtpNet;
 using Project_OnlineBanking.Models;
 using System.Diagnostics;
 
@@ -8,18 +7,13 @@ namespace Project_OnlineBanking.Services
     public class TransactionServiceImpl : TransactionService
     {
         private DatabaseContext db;
-        private UserService userService;
         private MailService mailService;
-        private bool check = false;
 
         public TransactionServiceImpl(DatabaseContext _db, UserService _userService, MailService _mailService)
         {
             db = _db;
-            userService = _userService;
             mailService = _mailService;
         }
-
-
 
         public bool TransferMoney(string sender, string receiver, decimal amount, string message)
         {
@@ -50,6 +44,7 @@ namespace Project_OnlineBanking.Services
             }
             return false;
         }
+
         public string mailOTP(string to)
         {
             var secretKey = "GMZTKNJVGEYTC";
@@ -58,10 +53,9 @@ namespace Project_OnlineBanking.Services
             var result = totp.ComputeTotp();// Tính toán mã OTP
 
             // Lấy thời gian còn lại cho mã OTP
-            var remainingTime = totp.RemainingSeconds();
-
+            /*var remainingTime = totp.RemainingSeconds();
             Debug.WriteLine($"Mã OTP: {result}");
-            Debug.WriteLine($"Thời gian còn lại: {remainingTime} giây");
+            Debug.WriteLine($"Thời gian còn lại: {remainingTime} giây");*/
 
             var from = "lenhath6@gmail.com";
             var subject = "Finbank";
@@ -72,14 +66,7 @@ namespace Project_OnlineBanking.Services
                             "<h3>Thank you,</h3>" +
                             "<h2><b>Finbank</b></h2>" +
                             "<h3>Disclaimer: This email and any files transmitted with it are confidential and intended solely for\r\nthe use of the individual or entity to whom they are addressed.</h3>";
-            if (mailService.Send(from, to, subject, content))
-            {
-                return result;
-            }
-            else
-            {
-                return null;
-            }
+            return mailService.Send(from, to, subject, content) ? result : "";
         }
 
         private void LogTransaction(int senderAccountId, int recipientAccountId, decimal amount, string message)
@@ -117,6 +104,11 @@ namespace Project_OnlineBanking.Services
         public List<Transaction> findByTypeRec(int accountId, string type)
         {
             return db.Transactions.Where(i => i.RecipientAccountId == accountId & i.TransactionType == type).OrderByDescending(i => i.TransactionDate).ToList();
+        }
+
+        public List<Transaction> findByBankAccountId(int BankAccountId)
+        {
+            return db.Transactions.Where(t => t.SenderAccountId == BankAccountId || t.RecipientAccountId == BankAccountId).ToList();
         }
     }
 }

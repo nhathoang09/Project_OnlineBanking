@@ -1,0 +1,66 @@
+﻿@{
+    Layout = "~/Areas/Admin/Views/Layout/_AdminLayout.cshtml";
+}
+@inject Project_OnlineBanking.Services.RoleService roleService
+<section class="content">
+    <div class="container-fluid">
+        <h2 class="text-center display-4">Search</h2>
+        <div class="row">
+            <div class="col-md-8 offset-md-2">
+                <form action="simple-results.html">
+                    <div class="input-group">
+                        <input type="search" class="form-control form-control-lg" placeholder="Type your keywords here">
+                        <div class="input-group-append">
+                            <button type="submit" class="btn btn-lg btn-default">
+                                <i class="fa fa-search"></i>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+<br/>
+<br/>
+<br/>
+<div class="card">
+    <div class="card-header">
+        <h3 class="card-title">List Account</h3>
+
+       
+    </div>
+    <!-- /.card-header -->
+    <div class="card-body table-responsive p-0">
+        <table class="table table-hover text-nowrap">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Username</th>
+                    <th>DateOfBirth</th>
+                    <th>Fullname</th>
+                    
+                </tr>
+            </thead>
+            @foreach (var account in ViewBag.accounts)
+            {
+                <tbody>
+                    <tr>
+                        <td>@account.AccountId</td>
+                        <td>
+                            <a asp-area="admin" asp-controller="bankaccount" asp-action="listAccountBank" asp-route-AccountId="@account.AccountId">
+                                @account.Username
+                            </a>
+                        </td>
+                       
+                        
+                        <td>@account.DateOfBirth</td>
+                        <td>@account.FullName</td>
+                    </tr>
+                </tbody>
+            }
+
+        </table>
+    </div>
+    <!-- /.card-body -->
+</div>

@@ -1,0 +1,60 @@
+﻿@{
+    Layout = "~/Areas/Admin/Views/Layout/_AdminLayout.cshtml";
+}
+@inject Project_OnlineBanking.Services.BankAccountService bankAccountService
+<section class="content">
+    <div class="container-fluid">
+        <h2 class="text-center display-4">Search</h2>
+        <div class="row">
+            <div class="col-md-8 offset-md-2">
+                <form action="simple-results.html">
+                    <div class="input-group">
+                        <input type="search" class="form-control form-control-lg" placeholder="Type your keywords here">
+                        <div class="input-group-append">
+                            <button type="submit" class="btn btn-lg btn-default">
+                                <i class="fa fa-search"></i>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+<br />
+<br />
+<br />
+<div class="card">
+    <div class="card-header">
+        <h3 class="card-title">List Transaction</h3>
+        </div>
+    <!-- /.card-header -->
+    <div class="card-body table-responsive p-0" style="height: 300px;">
+        <table class="table table-head-fixed text-nowrap">
+            <thead>
+                <tr>
+                    <th>SenderAccount</th>
+                    <th>RecipientAccount</th>
+                    <th>Amount</th>
+                    <th>TransactionType</th>
+                    <th>Description</th>
+                    <th>TransactionDate</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var transaction in ViewBag.transactions)
+                {
+                    <tr>
+                        <td>@bankAccountService.findById(transaction.SenderAccountId).AccountNumber</td>
+                        <td>@bankAccountService.findById(transaction.RecipientAccountId).AccountNumber</td>
+                        <td>@transaction.Amount</td>
+                        <td>@transaction.TransactionType</td>
+                        <td>@transaction.Description</td>
+                        <td>@transaction.TransactionDate</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <!-- /.card-body -->
+</div>

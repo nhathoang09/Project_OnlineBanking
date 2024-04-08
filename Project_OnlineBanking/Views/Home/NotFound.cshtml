@@ -1,0 +1,66 @@
+﻿@model Project_OnlineBanking.Models.BankAccount;
+@{
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+<div class="stricky-header stricked-menu main-menu">
+    <div class="sticky-header__content"></div><!-- /.sticky-header__content -->
+</div><!-- /.stricky-header -->
+<!--Start breadcrumb area-->
+<section class="breadcrumb-area">
+    <div class="breadcrumb-area-bg"
+         style="background-image: url(../User/assets/images/backgrounds/breadcrumb-area-bg.jpg);"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="inner-content">
+                    <div class="title" data-aos="fade-right" data-aos-easing="linear" data-aos-duration="500">
+                        <h2>404 Error</h2>
+                    </div>
+                    <div class="breadcrumb-menu" data-aos="fade-left" data-aos-easing="linear"
+                         data-aos-duration="500">
+                        <ul>
+                            <li><a asp-controller="home" asp-action="index">Home</a></li>
+                            <li class="active">404</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--End breadcrumb area-->
+<!--Start Error Page Area-->
+<section class="error-page-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="error-content text-center">
+                    <div class="big-title wow fadeInDown" data-wow-delay="100ms" data-wow-duration="1500ms">
+                        <h2>Oh...ho...</h2>
+                    </div>
+                    <div class="title wow fadeInDown" data-wow-delay="100ms" data-wow-duration="1500ms">
+                        <h2>Sorry, Something Went Wrong.</h2>
+                    </div>
+                    <div class="text">
+                        <p>The page you are looking for was moved, removed, renamed<br> or never existed.</p>
+                    </div>
+
+                    <div class="error-page-search-box">
+                        <form class="search-form" action="#">
+                            <input placeholder="Search ..." type="text">
+                            <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
+                        </form>
+                    </div>
+                    <div class="btns-box wow slideInUp" data-wow-delay="200ms" data-wow-duration="1500ms">
+                        <a class="btn-one" href="index.html">
+                            <span class="txt">Back to Home<i class="icon-refresh arrow"></i></span>
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--End Error Page Area-->

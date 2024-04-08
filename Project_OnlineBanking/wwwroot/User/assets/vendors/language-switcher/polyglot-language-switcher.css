@@ -138,25 +138,3 @@
 #polyglotLanguageSwitcher ul.dropdown li:hover a {
     color: #ddd;
 }
-
-
-
-#en {
-    background-image: url(../../assets/language-switcher/gb.png);
-}
-
-#fr {
-    background-image: url(../../assets/language-switcher/fr.png);
-}
-
-#de {
-    background-image: url(../../assets/language-switcher/de.png);
-}
-
-#it {
-    background-image: url(../../assets/language-switcher/it.png);
-}
-
-#es {
-    background-image: url(../../assets/language-switcher/es.png);
-}

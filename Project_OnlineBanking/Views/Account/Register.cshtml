@@ -55,7 +55,7 @@
     <section>
         <div class="form-box">
             <div class="form-value">
-                <form method="post" asp-controller="account" asp-action="register">
+                <form method="post" asp-controller="account" asp-action="register" id="register">
                     <div class="logo-box"> 
                         <img src="~/User/assets/images/resources/logo-1.png" alt="Awesome Logo" title="">
                     </div>
@@ -65,7 +65,7 @@
                             <td>
                                 <div class="inputbox">
                                     <ion-icon name="person-outline"></ion-icon>
-                                    <input type="text" asp-for="Username" required>
+                                    <input type="text" asp-for="Username" id="username" required>
                                     <label for="">Username</label>
                                 </div>
                             </td>
@@ -88,7 +88,7 @@
                             <td>
                                 <div class="inputbox">
                                     <ion-icon name="calendar-outline"></ion-icon>
-                                    <input type="text" name="date" id="datepicker" asp-for="DateOfBirth" asp-format="{0:MM/dd/yyyy}" required>
+                                    <input type="text" id="dob" asp-for="DateOfBirth" asp-format="{dd/MM/yyyy}">
                                     <label for="">Date Of Birth</label>
                                 </div>
                             </td>
@@ -97,7 +97,7 @@
                             <td>
                                 <div class="inputbox">
                                     <ion-icon name="mail-outline"></ion-icon>
-                                    <input type="text" asp-for="Email" required>
+                                    <input type="text" asp-for="Email" id="email" required>
                                     <label for="">Email</label>
                                 </div>
                             </td>
@@ -113,13 +113,13 @@
                             <td colspan="2">
                                 <div class="inputbox" style="width: 100%">
                                     <ion-icon name="home-outline"></ion-icon>
-                                    <input type="text" asp-for="Address" required>
+                                    <input type="text" asp-for="Address">
                                     <label for="">Address</label>
                                 </div>
                             </td>
                         </tr>
                     </table>
-                    <button type="submit">Register</button>
+                    <button type="button" onclick="register()">Register</button>
                 </form>
             </div>
         </div>
@@ -151,5 +151,49 @@
 
     <!-- Template js -->
     <script src="~/User/assets/js/custom.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        $(document).ready(function () {
+            $("#dob").datepicker({
+                dateFormat: 'dd/mm/yy'
+            });
+        });
+
+        function register() {
+            var username = $('#username').val();
+            var email = $('#email').val();
+            $.ajax({
+                data: {
+                    username: username,
+                    email: email
+                },
+                url: '/ajax/checkRegister',
+                success: function (result) {
+                    console.log(result);
+                    if (result == "Username") {
+                        Swal.fire({
+                            icon: "error",
+                            title: "Oops...",
+                            text: "Username already exists",
+                        });
+                    } else if (result == "Email") {
+                        Swal.fire({
+                            icon: "error",
+                            title: "Oops...",
+                            text: "Email already exists",
+                        });
+                    } 
+                    else {
+                        Swal.fire({
+                            title: "Register Success",
+                            text: "Automatically closes or Click the button to close",
+                            icon: "success"
+                        });
+                        $("#register").submit();
+                    }
+                }
+            });
+        }
+    </script>
 </body>
 </html>

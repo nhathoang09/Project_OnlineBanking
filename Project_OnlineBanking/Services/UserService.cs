@@ -11,5 +11,6 @@ namespace Project_OnlineBanking.Services
         public BankAccount findByBankId(int id);// Tìm số tài khoản bằng Id
         public bool BankNumber(BankAccount bankacc);// Tạo số tài khoản cho tài khoản 
         public string findFullnameByAccnum(string accnum);// Tìm tên tài khoản bằng số tài khoản
+        public string checkRegister(string username, string email);// Kiểm tra username và email đã tồn tại chưa
     }
 }

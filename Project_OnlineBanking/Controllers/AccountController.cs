@@ -1,6 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Project_OnlineBanking.Models;
 using Project_OnlineBanking.Services;
+using System.Diagnostics;
 
 namespace Project_OnlineBanking.Controllers
 {
@@ -9,11 +11,13 @@ namespace Project_OnlineBanking.Controllers
     {
         private UserService userService;
         private TransactionService transactionService;
+        private DatabaseContext db;
 
-        public AccountController(UserService _userService, TransactionService _transactionService)
+        public AccountController(UserService _userService, TransactionService _transactionService, DatabaseContext _db)
         {
             userService = _userService;
             transactionService = _transactionService;
+            db = _db;
         }
 
         [Route("~/")]
@@ -28,17 +32,52 @@ namespace Project_OnlineBanking.Controllers
         [Route("login")]
         public IActionResult Login(string username, string password)
         {
-            if (userService.Login(username, password))
+            var account = userService.findByUsername(username);
+            int failedSuccessCount = account.FailedLoginCount;
+            HttpContext.Session.SetInt32("fsc", failedSuccessCount);
+            if(account.RoleId == 1)
             {
-                HttpContext.Session.SetString("username", username);
-                return RedirectToAction("Middle");
+                if (userService.Login(username, password))
+                {
+                    account.LastLoginSuccess = DateTime.Now;
+                    HttpContext.Session.SetString("username", username);
+                    return RedirectToAction("Index", "owner", new { area = "admin"});
+                }
+                else
+                {
+                    return RedirectToAction("Login");
+                }
+            }
+            else if (account.RoleId == 2)
+            {
+                if (userService.Login(username, password))
+                {
+                    account.LastLoginSuccess = DateTime.Now;
+                    account.FailedLoginCount = 0;
+                    db.Entry(account).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+                    HttpContext.Session.SetString("username", username);
+                    return RedirectToAction("Middle");
+                }
+                else
+                {
+                    account.FailedLoginCount += 1;
+                    db.Entry(account).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+                    TempData["username"] = username;
+                    TempData["msg"] = false;
+                    return RedirectToAction("Login");
+                }
             }
             else
             {
-                TempData["username"] = username;
-                TempData["msg"] = false;
                 return RedirectToAction("Login");
-            }
+            };
+        }
+
+        [Route("logout")]
+        public IActionResult Logout()
+        {
+            HttpContext.Session.Remove("username");
+            return RedirectToAction("Login");
         }
 
         [Route("register")]
@@ -52,19 +91,20 @@ namespace Project_OnlineBanking.Controllers
         [Route("register")]
         public IActionResult Register(Account account)
         {
+            account.LastLoginSuccess = DateTime.Now;
             account.Password = BCrypt.Net.BCrypt.HashPassword(account.Password);
             account.RoleId = 2;
             account.IsTransferEnabled = false;
+            account.FailedLoginCount = 0;
             if (userService.Create(account))
             {
+                TempData["username"] = account.Username;
                 return RedirectToAction("Login");
             }
             else
             {
-                TempData["msg"] = "Failed!";
                 return RedirectToAction("Register");
             }
-
         }
 
         [Route("middle")]

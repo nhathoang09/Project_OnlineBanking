@@ -301,22 +301,6 @@
   }
 
 
-  //===Language switcher===
-  function languageSwitcher() {
-    if ($("#polyglot-language-options").length) {
-      $('#polyglotLanguageSwitcher').polyglotLanguageSwitcher({
-        effect: 'slide',
-        animSpeed: 100,
-        testMode: true,
-        onChange: function (evt) {
-          alert("The selected language is: " + evt.selectedItem);
-        }
-
-      });
-    };
-  }
-
-
   // Banking Tab
   if ($('.banking-tab').length) {
     $('.banking-tab .tabs-button-box .tab-btn-item').on('click', function (e) {

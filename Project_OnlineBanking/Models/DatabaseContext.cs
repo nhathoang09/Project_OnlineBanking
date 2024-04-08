@@ -30,12 +30,12 @@ public partial class DatabaseContext : DbContext
     public virtual DbSet<SupportTicket> SupportTickets { get; set; }
 
     public virtual DbSet<Transaction> Transactions { get; set; }
-    
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Account>(entity =>
         {
-            entity.HasKey(e => e.AccountId).HasName("PK__Accounts__349DA58680072324");
+            entity.HasKey(e => e.AccountId).HasName("PK__Accounts__349DA586C2D8EEF8");
 
             entity.Property(e => e.AccountId).HasColumnName("AccountID");
             entity.Property(e => e.Address)
@@ -47,9 +47,7 @@ public partial class DatabaseContext : DbContext
             entity.Property(e => e.FullName)
                 .HasMaxLength(100)
                 .IsUnicode(false);
-            entity.Property(e => e.LastLoginSuccess)
-                .IsRowVersion()
-                .IsConcurrencyToken();
+            entity.Property(e => e.LastLoginSuccess).HasColumnType("datetime");
             entity.Property(e => e.Password)
                 .HasMaxLength(100)
                 .IsUnicode(false);
@@ -68,7 +66,7 @@ public partial class DatabaseContext : DbContext
 
         modelBuilder.Entity<BankAccount>(entity =>
         {
-            entity.HasKey(e => e.BankAccountId).HasName("PK__BankAcco__4FC8E741BD09703E");
+            entity.HasKey(e => e.BankAccountId).HasName("PK__BankAcco__4FC8E741F2EA67F4");
 
             entity.Property(e => e.BankAccountId).HasColumnName("BankAccountID");
             entity.Property(e => e.AccountId).HasColumnName("AccountID");
@@ -84,7 +82,7 @@ public partial class DatabaseContext : DbContext
 
         modelBuilder.Entity<Cheque>(entity =>
         {
-            entity.HasKey(e => e.ChequeId).HasName("PK__Cheques__B816D9D0AFDC3D1C");
+            entity.HasKey(e => e.ChequeId).HasName("PK__Cheques__B816D9D044BBBC46");
 
             entity.Property(e => e.ChequeId).HasColumnName("ChequeID");
             entity.Property(e => e.AccountBankId).HasColumnName("AccountBank_ID");
@@ -114,7 +112,7 @@ public partial class DatabaseContext : DbContext
 
         modelBuilder.Entity<Request>(entity =>
         {
-            entity.HasKey(e => e.RequestId).HasName("PK__Requests__33A8519A2F96E01C");
+            entity.HasKey(e => e.RequestId).HasName("PK__Requests__33A8519A0290C149");
 
             entity.Property(e => e.RequestId).HasColumnName("RequestID");
             entity.Property(e => e.AccountId).HasColumnName("Account_ID");
@@ -140,7 +138,7 @@ public partial class DatabaseContext : DbContext
 
         modelBuilder.Entity<SupportTicket>(entity =>
         {
-            entity.HasKey(e => e.TicketId).HasName("PK__SupportT__712CC627E20B3282");
+            entity.HasKey(e => e.TicketId).HasName("PK__SupportT__712CC627E42AABC6");
 
             entity.Property(e => e.TicketId).HasColumnName("TicketID");
             entity.Property(e => e.AccountId).HasColumnName("Account_ID");
@@ -160,7 +158,7 @@ public partial class DatabaseContext : DbContext
 
         modelBuilder.Entity<Transaction>(entity =>
         {
-            entity.HasKey(e => e.TransactionId).HasName("PK__Transact__55433A4BE03AA0BD");
+            entity.HasKey(e => e.TransactionId).HasName("PK__Transact__55433A4B711F8FB8");
 
             entity.Property(e => e.TransactionId).HasColumnName("TransactionID");
             entity.Property(e => e.Amount).HasColumnType("decimal(15, 2)");

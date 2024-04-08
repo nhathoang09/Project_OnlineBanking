@@ -160,17 +160,28 @@
                                             </ul>
                                         </li>
                                         <li class="dropdown">
-                                            <a asp-controller="home" asp-action="transaction" asp-route-type="all">Transaction</a>
+                                            <a asp-controller="transaction" asp-action="index" asp-route-type="all">Transaction</a>
                                             <ul>
-                                                <li><a asp-controller="home" asp-action="transaction" asp-route-type="Transfer">Funds Transfer</a></li>
-                                                <li><a asp-controller="home" asp-action="transaction" asp-route-type="Receive">Receive Funds</a></li>
-                                                <li><a asp-controller="home" asp-action="transaction" asp-route-type="Recharge">Recharge</a></li>
+                                                <li><a asp-controller="transaction" asp-action="index" asp-route-type="Transfer">Funds Transfer</a></li>
+                                                <li><a asp-controller="transaction" asp-action="index" asp-route-type="Receive">Receive Funds</a></li>
+                                                <li><a asp-controller="transaction" asp-action="index" asp-route-type="Recharge">Recharge</a></li>
                                             </ul>
                                         </li>
                                         <li>
-                                            <a asp-controller="home" asp-action="contact">Contact</a>
+                                            <a asp-controller="contact" asp-action="index">Contact</a>
                                         </li>
                                     </ul>
+                                </div>
+                            </div>
+
+                            <div class="main-menu-style1-right">
+                                <div class="header-btn-one">
+                                    <a asp-controller="account" asp-action="logout">
+                                        <span class="icon-home-button"></span>Logout
+                                    </a>
+                                    <a class="style2" asp-controller="account" asp-action="banknumber">
+                                        <span class="icon-payment"></span>Open New Number Account
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -456,11 +467,11 @@
             <ul class="mobile-nav__contact list-unstyled">
                 <li>
                     <i class="fa fa-envelope"></i>
-                    <a href="mailto:info@example.com">info@example.com</a>
+                    <a href="mailto:lenhath6@gmail.com">lenhath6@gmail.com</a>
                 </li>
                 <li>
                     <i class="fa fa-phone-alt"></i>
-                    <a href="tel:123456789">444 000 777 66</a>
+                    <a href="tel:0909397979">0909 397979</a>
                 </li>
             </ul>
             <div class="mobile-nav__social">

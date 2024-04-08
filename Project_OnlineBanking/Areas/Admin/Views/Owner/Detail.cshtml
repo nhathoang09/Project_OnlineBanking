@@ -1,0 +1,100 @@
+﻿@{
+    Layout = "~/Areas/Admin/Views/Layout/_AdminLayout.cshtml";
+}
+@model Project_OnlineBanking.Models.Account
+@inject Project_OnlineBanking.Services.RoleService roleService
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-3">
+
+            <!-- Profile Image -->
+            <div class="card card-primary card-outline">
+                <div class="card-body box-profile">
+                    <div class="text-center">
+                        <img src="~/dist/img/user2-160x160.jpg" class="profile-user-img img-fluid img-circle"
+                             alt="User profile picture">
+                    </div>
+
+                    <h3 class="profile-username text-center">@ViewBag.account_last.Username</h3>
+
+                    <p class="text-muted text-center">@roleService.find(@ViewBag.account_last.RoleId).Name</p>
+                    <a href="#" class="btn btn-primary btn-block"><b>Follow</b></a>
+                </div>
+                <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+            <!-- About Me Box -->
+            <!-- /.card -->
+        </div>
+        <!-- /.col -->
+        <div class="col-md-9">
+            <div class="card">
+                <div class="card-body">
+                    <div class="tab-content">
+                        <form class="form-horizontal" asp-area="admin" asp-controller="owner" asp-action="detail">
+                            <div class="form-group row">
+                                <label for="inputName" class="col-sm-2 col-form-label">Username</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" asp-for="Username">
+                                </div>
+                            </div>
+                                <div class="form-group row">
+                                    <label for="inputName" class="col-sm-2 col-form-label">Name</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="inputName" asp-for="FullName">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
+                                    <div class="col-sm-10">
+                                        <input type="email" class="form-control" id="inputEmail" asp-for="Email">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="inputName2" class="col-sm-2 col-form-label">Address</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control"  asp-for="Address">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="inputName2" class="col-sm-2 col-form-label">Phone</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" asp-for="PhoneNumber">
+                                    </div>
+                                </div>
+
+                            <div class="form-group row">
+                                <label for="inputName2" class="col-sm-2 col-form-label">Password</label>
+                                <div class="col-sm-10">
+                                    <input type="password" class="form-control" name="password">
+                                </div>
+                            </div>
+                                <div class="form-group row">
+                                    <label for="inputSkills" class="col-sm-2 col-form-label">DateOfBirth</label>
+                                    <div class="col-sm-10">
+                                        <td><input type="text" asp-for="DateOfBirth" asp-format="{0:MM/dd/yyyy}" id="datepicker"/></td>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="offset-sm-2 col-sm-10">
+                                    <input type="hidden" asp-for="Password"/>
+                                    <input type="hidden" asp-for="AccountId"/>
+                                    <input type="hidden" asp-for="IsTransferEnabled"/>
+                                    <input type="hidden" asp-for="RoleId" />
+                                    <input type="hidden" asp-for="FailedLoginCount"/>
+                                        <button type="submit" class="btn btn-danger">Submit</button>
+                                    </div>
+                                </div>
+                            </form>
+                        <!-- /.tab-pane -->
+                    </div>
+                    <!-- /.tab-content -->
+                </div><!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+        </div>
+        <!-- /.col -->
+    </div>
+    <!-- /.row -->
+</div><

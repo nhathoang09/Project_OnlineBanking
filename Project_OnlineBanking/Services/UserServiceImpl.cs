@@ -12,7 +12,6 @@ namespace Project_OnlineBanking.Services
             db = _db;
         }
 
-
         public bool Login(string username, string password)
         {
             var account = db.Accounts.SingleOrDefault(a => a.Username == username);
@@ -39,7 +38,7 @@ namespace Project_OnlineBanking.Services
 
         public Account findByUsername(string username)
         {
-            return db.Accounts.Where(u => u.Username == username).FirstOrDefault();
+            return db.Accounts.Where(u => u.Username == username).SingleOrDefault();
         }
 
         public List<BankAccount> findByAccId(int accountId)
@@ -72,9 +71,24 @@ namespace Project_OnlineBanking.Services
             {
                 var accId = db.BankAccounts.Where(u => u.AccountNumber == accnum).SingleOrDefault().AccountId;
                 return db.Accounts.Where(i => i.AccountId == accId).FirstOrDefault().FullName;
-            }catch (Exception ex)
+            }catch
             {
                 return "Account number does not exist";
+            }
+        }
+
+        public string checkRegister(string username, string email)
+        {
+            if (db.Accounts.Where(u => u.Username == username).Count() != 0)
+            {
+                return "Username";
+            }else if (db.Accounts.Where(u => u.Email == email).Count() != 0)
+            {
+                return "Email";
+            }
+            else
+            {
+                return "";
             }
         }
     }

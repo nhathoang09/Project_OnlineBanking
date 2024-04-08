@@ -13,7 +13,7 @@ public partial class Account
 
     public int FailedLoginCount { get; set; }
 
-    public byte[] LastLoginSuccess { get; set; } = null!;
+    public DateTime? LastLoginSuccess { get; set; }
 
     public string Email { get; set; } = null!;
 

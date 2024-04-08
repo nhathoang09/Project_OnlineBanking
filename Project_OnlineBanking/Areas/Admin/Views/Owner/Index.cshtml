@@ -1,0 +1,69 @@
+﻿@{
+    Layout = "~/Areas/Admin/Views/Layout/_AdminLayout.cshtml";
+}
+@inject Project_OnlineBanking.Services.RoleService roleService
+<div class="card">
+    <div class="card-header">
+        <h3 class="card-title">List Account</h3>
+        <br />
+
+        <div>
+                <form method="get" asp-area="admin" asp-controller="owner" asp-action="searchStatus">
+                    <div class="form-group">
+                        <label>TransferEnable</label>
+                        <select class="form-control" name="selected">
+                            <option value="all">All</option>
+                            <option value="true">Allowed</option>
+                            <option value="false">Not Allowed</option>
+                        </select>
+                    </div>
+                    <input type="submit" value="Submit" />
+                </form>
+        </div>
+    </div>
+    <!-- /.card-header -->
+    <div class="card-body table-responsive p-0">
+        <table class="table table-hover text-nowrap">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Username</th>
+                    <th>DateOfBirth</th>
+                    <th>Fullname</th>
+                    <th>TransferEnable</th>
+                    <th>Role</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            @if (ViewBag.accounts != null)
+            {
+                @foreach (var account in ViewBag.accounts)
+                {
+                    <tbody>
+                        <tr>
+                            <td>@account.AccountId</td>
+                            <td><a asp-area="admin" asp-controller="owner" asp-action="detail" asp-route-id="@account.AccountId">@account.Username</a></td>
+                            <td>@account.DateOfBirth</td>
+                            <td>@account.FullName</td>
+                            <td><a asp-area="admin" asp-controller="owner" asp-action="editStatus" asp-route-id="@account.AccountId" onclick="return confirm('Are you sure?')">@(account.IsTransferEnabled ? "Allowed" : "Not Allowed")</a></td>
+                            <td>@roleService.find(@account.RoleId).Name</td>
+                            <td>
+                                <a asp-area="admin" asp-controller="owner" asp-action="delete" asp-route-id="@account.AccountId" onclick="return confirm('Are you sure?')">Delete</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                }
+            }
+            else
+            {
+                <tbody>
+                    <tr colspan="7">
+                        <td>No Data</td>
+                    </tr>
+                </tbody>
+            }
+
+        </table>
+    </div>
+    <!-- /.card-body -->
+</div>

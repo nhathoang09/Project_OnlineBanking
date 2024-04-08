@@ -32,14 +32,10 @@ namespace Project_OnlineBanking.Controllers
             return new JsonResult(mailotp);
         }
 
-        [Route("checkOTP")]
-        public IActionResult CheckOTP(string otp, string mail)
+        [Route("checkRegister")]
+        public IActionResult CheckUsername(string username, string email)
         {
-            if (mail == otp)
-            {
-                return new JsonResult(true);
-            }
-            return new JsonResult(false);
+            return new JsonResult(userService.checkRegister(username, email));
         }
     }
 }
