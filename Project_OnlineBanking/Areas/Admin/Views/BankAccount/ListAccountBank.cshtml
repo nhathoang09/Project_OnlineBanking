@@ -37,8 +37,6 @@
                 <tr>
                     <th>AccountNumber</th>
                     <th>Balance</th>
-                    <th>Status</th>
-                    
                 </tr>
             </thead>
             @foreach (var bankAccount in ViewBag.bankAccounts)
@@ -49,7 +47,6 @@
                             <a asp-area="admin" asp-controller="bankaccount" asp-action="transaction" asp-route-bankAccountId="@bankAccount.BankAccountId">@bankAccount.AccountNumber</a>
                         </td>
                         <td>@bankAccount.Balance</td>
-                        <td>@(bankAccount.Status ? "Allow" : "Not Allow")</td>
                     </tr>
                 </tbody>
             }

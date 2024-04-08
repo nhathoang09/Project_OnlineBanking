@@ -1,4 +1,4 @@
-﻿@model Project_OnlineBanking.Models.BankAccount;
+﻿@model Project_OnlineBanking.Models.SupportTicket;
 @{
     Layout = "~/Views/Shared/_UserLayout.cshtml";
 }
@@ -111,7 +111,7 @@
 
             <div class="col-xl-6">
                 <div class="contact-form">
-                    <form method="post">
+                    <form method="post" asp-controller="contact" asp-action="ticket">
                         <div class="form-group">
                             <label>Fullname</label>
                             <div class="input-box">
@@ -128,21 +128,21 @@
                         <div class="form-group">
                             <label>Phone</label>
                             <div class="input-box">
-                                <input type="text" >
+                                <input type="text">
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label>Subject</label>
                             <div class="input-box">
-                                <input type="text" required="">
+                                <input type="text" asp-for="Subject" required="">
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label>Message</label>
                             <div class="input-box">
-                                <textarea></textarea>
+                                <textarea asp-for="Description"></textarea>
                             </div>
                         </div>
 

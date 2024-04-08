@@ -11,19 +11,6 @@ public class AccountServiceImpl : AccountService
         db = _db;
     }
 
-    public bool login(string username, string password)
-    {
-        var account = db.Accounts.SingleOrDefault(a => a.Username == username);
-        if (account != null)
-        {
-            return BCrypt.Net.BCrypt.Verify(password, account.Password);
-        }
-        return false;
-
-    }
-
-
-
     public bool create(Account account)
     {
         

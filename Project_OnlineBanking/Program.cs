@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
 using Project_OnlineBanking.Middlewares;
 using Project_OnlineBanking.Models;
@@ -16,14 +17,20 @@ builder.Services.AddScoped<SupportService, SupportServiceImpl>();
 builder.Services.AddScoped<BankAccountService, BankAccountServiceImpl>();
 builder.Services.AddScoped<AccountService, AccountServiceImpl>();
 builder.Services.AddScoped<RoleService, RoleServiceImpl>();
-
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(option =>
+{
+    option.LoginPath = "/account/login";
+    option.AccessDeniedPath = "/account/accessDenied";
+});
 builder.Services.AddSession();
 
 var app = builder.Build();
 
+app.UseAuthentication();
+app.UseAuthorization();
 app.UseSession();
 
-app.UseMiddleware<LoginMiddleware>();
+//app.UseMiddleware<LoginMiddleware>();
 app.UseMiddleware<BankIdMiddleware>();
 
 app.UseStaticFiles();

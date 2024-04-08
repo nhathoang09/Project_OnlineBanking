@@ -91,5 +91,19 @@ namespace Project_OnlineBanking.Services
                 return "";
             }
         }
+
+        public bool Ticket(SupportTicket ticket)
+        {
+            try
+            {
+                db.SupportTickets.Add(ticket);
+                return db.SaveChanges() > 0;
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+                return false;
+            }
+        }
     }
 }

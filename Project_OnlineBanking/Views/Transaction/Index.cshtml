@@ -137,12 +137,10 @@
                             <h3>Categories</h3>
                         </div>
                         <ul class="sidebar-categories-box">
-                            <li><a asp-controller="transaction">Announcements</a></li>
-                            <li><a href="#">Banking</a></li>
-                            <li><a href="#">Finance</a></li>
-                            <li><a href="#">Investment</a></li>
-                            <li><a href="#">Press Release</a></li>
-                            <li><a href="#">Technology</a></li>
+                            <li><a asp-controller="transaction" asp-action="index" asp-route-value="all">All Transaction</a></li>
+                            <li><a asp-controller="transaction" asp-action="index" asp-route-type="Transfer">Funds Transfer</a></li>
+                            <li><a asp-controller="transaction" asp-action="index" asp-route-type="Receive">Receive Funds</a></li>
+                            <li><a asp-controller="transaction" asp-action="index" asp-route-type="Recharge">Recharge</a></li>
                         </ul>
                     </div>
                     <!--End Single Sidebar Box-->

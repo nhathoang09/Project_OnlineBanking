@@ -12,8 +12,6 @@ public interface AccountService
 
     public bool Delete(int id);
 
-    public bool login(string username, string password);
-
     public Account find(string username);
 
     public Account findById(int id);
