@@ -49,6 +49,7 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
         var msg = '@TempData["msg"]';
+        console.log(msg);
         if (msg) {
             setTimeout(() => {
                 Swal.fire({
@@ -56,7 +57,17 @@
                     title: "Oops...",
                     text: "Username Or Password Incorrect!!!",
                 });
-            }, 500);
+            }, 400);
+        } 
+        var lock = '@TempData["lock"]';
+        if (lock) {
+            setTimeout(() => {
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: "If your account has been locked, please go to the nearest Finbank for authentication",
+                });
+            }, 400);
         }
     </script>
 </head>

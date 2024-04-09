@@ -87,23 +87,32 @@
                             <h2>Report by month</h2>
                         </div>
                         <div class="text">
+                            <div id="columnchart_material" style="width: 800px; height: 500px;"></div>
                             <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+                            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
                             <script type="text/javascript">
                                 google.charts.load('current', { 'packages': ['bar'] });
                                 google.charts.setOnLoadCallback(drawChart);
-
-
                                 function drawChart() {
-                                    var jsonData = [
-                                        ['Month', 'Received' ,'Lo'],
-                                        $.ajax({
-                                            type: "GET",
-                                            url: "/ajax/chart",
-                                            dataType: "json",
-                                            async: false
-                                        }).responseText;
-                                    ]
-                                    var data = google.visualization.DataTable(jsonData);
+                                    var jsona = $.ajax({
+                                        type: "GET",
+                                        url: "/ajax/chart",
+                                        dataType: "json",
+                                        async: false
+                                    }).responseJSON;
+
+                                    let json = JSON.stringify(jsona);
+                                    console.log(typeof json);
+                                    console.log(json);
+                                    console.log(Object.keys(json));
+
+                                    var dataVis = new google.visualization.DataTable();
+                                    dataVis.addColumn('string', 'Month');
+                                    dataVis.addColumn('number', 'Received');
+                                    dataVis.addColumn('number', 'Spent');
+                                    dataVis.addRows([
+                                        [json.month, json.received, json.spent]
+                                    ]);
 
                                     var options = {
                                         chart: {
@@ -114,40 +123,10 @@
 
                                     var chart = new google.charts.Bar(document.getElementById('columnchart_material'));
 
-                                    chart.draw(data, google.charts.Bar.convertOptions(options));
+                                    chart.draw(dataVis, google.charts.Bar.convertOptions(options));
                                 }
+                                
                             </script>
-                            @* <div id="chart_div"></div>
-                            <script>
-                                var jsonData = $.ajax({
-                                    type: "GET",
-                                    url: "/ajax/chart",
-                                    dataType: "json",
-                                    async: false
-                                }).responseText;
-                                console.log(jsonData);
-
-                                // Chuyển dữ liệu thành đối tượng DataTable của Google Charts
-                                var data = new google.visualization.DataTable(jsonData);
-
-                                // Tùy chỉnh biểu đồ
-                                var options = {
-                                    title: "Biểu đồ dữ liệu",
-                                    width: 600,
-                                    height: 400
-                                    // Thêm các tùy chọn khác nếu cần
-                                };
-
-                                // Vẽ biểu đồ
-                                var chart = new google.visualization.ColumnChart(document.getElementById("chart_div"));
-                                chart.draw(data, options);
-                                google.charts.setOnLoadCallback(function () {
-                                    // Gọi hàm vẽ biểu đồ ở đây
-                                    drawChart();
-                                });
-                            </script> *@
-
-                            <div id="columnchart_material" style="width: 800px; height: 500px;"></div>
                         </div>
                     </div>
 

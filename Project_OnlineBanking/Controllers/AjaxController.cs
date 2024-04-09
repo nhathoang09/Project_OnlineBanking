@@ -3,6 +3,7 @@ using Project_OnlineBanking.Services;
 using Project_OnlineBanking.Models;
 using System;
 using static System.Net.Mime.MediaTypeNames;
+using System.Globalization;
 
 namespace Project_OnlineBanking.Controllers
 {
@@ -16,7 +17,7 @@ namespace Project_OnlineBanking.Controllers
         {
             userService = _userService;
             transactionService = _transactionService;
-            db = _db; 
+            db = _db;
         }
 
         [Route("fullnameByAccnum")]
@@ -41,25 +42,26 @@ namespace Project_OnlineBanking.Controllers
         }
 
         [Route("chart")]
-        public IActionResult Chart(int accountId)
+        public IActionResult Chart()
         {
-            accountId = 2;
+            int accountId = 2;
             var transactions = transactionService.findByAccountId(accountId);
 
-            string[] report = new string[13];
+            object[] report = new object[12];
             foreach (var transaction in transactions)
             {
                 DateOnly transactionDateOnly = DateOnly.FromDateTime((DateTime)transaction.TransactionDate);
                 int month = transactionDateOnly.Month;
                 for (int i = 1; i <= 12; i++)
                 {
+                    string mon = CultureInfo.CurrentCulture.DateTimeFormat.GetAbbreviatedMonthName(i);
                     if (month == i)
                     {
-                        report[i-1] = i + ", " + transactionService.AmountUp(accountId) + ", " + transactionService.AmountDown(accountId);
+                        report[i - 1] = @"{ ""month"":" + mon + @" , ""received"": " + transactionService.AmountUp(accountId) + @" , ""spent"": " + transactionService.AmountDown(accountId) + " }";
                     }
                     else
                     {
-                        report[i-1] = "[ " + i + ", " + 0 + ", " + 0 + "]";
+                        report[i -1] = @"{ ""month"":" + mon + @" , ""received"": 0 , ""spent"": 0 }";
                     }
                 }
             }

@@ -96,67 +96,93 @@ namespace Project_OnlineBanking.Controllers
         public async Task<IActionResult> LoginAsync(string username, string password)
         {
             var account = userService.findByUsername(username);
-            int failedSuccessCount = account.FailedLoginCount;
-            HttpContext.Session.SetInt32("fsc", failedSuccessCount);
-            if (account.RoleId == 1)
+            try
             {
-                if (account != null)
+                int failedSuccessCount = account.FailedLoginCount;
+                HttpContext.Session.SetInt32("fsc", failedSuccessCount);
+                if (failedSuccessCount < 3)
                 {
-                    if (userService.Login(username, password))
+                    if (account.RoleId == 1)
                     {
+                        if (account != null)
+                        {
+                            if (userService.Login(username, password))
+                            {
 
-                        var date = DateTime.Now;
-                        var claims = new List<Claim>();
+                                var date = DateTime.Now;
+                                var claims = new List<Claim>();
 
-                        var role = roleService.find(account.RoleId);
-                        var roleName = role.Name;
-                        claims.Add(new Claim(ClaimTypes.Name, username));
-                        claims.Add(new Claim(ClaimTypes.Role, roleName));
+                                var role = roleService.find(account.RoleId);
+                                var roleName = role.Name;
+                                claims.Add(new Claim(ClaimTypes.Name, username));
+                                claims.Add(new Claim(ClaimTypes.Role, roleName));
 
-                        account.LastLoginSuccess = date;
+                                account.LastLoginSuccess = date;
 
-                        var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+                                var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
 
-                        var claimsPrincipal = new ClaimsPrincipal(claimsIdentity);
+                                var claimsPrincipal = new ClaimsPrincipal(claimsIdentity);
 
-                        await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, claimsPrincipal);
-                        accountService.create(account);
-                        return RedirectToAction("dashboard");
+                                await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, claimsPrincipal);
+                                accountService.create(account);
+                                return RedirectToAction("dashboard");
+                            }
+                            else
+                            {
+                                return RedirectToAction("login");
+                            }
+
+                        }
+                        else
+                        {
+                            return RedirectToAction("login");
+                        }
+                    }
+                    else if (account.RoleId == 2)
+                    {
+                        if (userService.Login(username, password))
+                        {
+                            account.LastLoginSuccess = DateTime.Now;
+                            account.FailedLoginCount = 0;
+                            db.Entry(account).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+                            HttpContext.Session.SetString("username", username);
+                            return RedirectToAction("Middle");
+                        }
+                        else
+                        {
+                            account.FailedLoginCount = failedSuccessCount + 1;
+                            try
+                            {
+                                db.Entry(account).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+                                TempData["username"] = username;
+                                TempData["msg"] = false;
+                                if(db.SaveChanges() > 0)
+                                {
+
+                                    return RedirectToAction("Login");
+                                }
+                            }
+                            catch (Exception ex)
+                            {
+                                Debug.WriteLine(ex);
+                                return RedirectToAction("Login");
+                            }
+                        }
                     }
                     else
                     {
-                        return RedirectToAction("login");
-                    }
-
-                }
-                else
+                        return RedirectToAction("Login");
+                    };
+                }else
                 {
-                    return RedirectToAction("login");
-                }
-            }
-            else if (account.RoleId == 2)
-            {
-                if (userService.Login(username, password))
-                {
-                    account.LastLoginSuccess = DateTime.Now;
-                    account.FailedLoginCount = 0;
-                    db.Entry(account).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
-                    HttpContext.Session.SetString("username", username);
-                    return RedirectToAction("Middle");
-                }
-                else
-                {
-                    account.FailedLoginCount += 1;
-                    db.Entry(account).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
-                    TempData["username"] = username;
-                    TempData["msg"] = false;
+                    TempData["lock"] = true;
                     return RedirectToAction("Login");
                 }
-            }
-            else
+            }catch (Exception ex)
             {
-                return RedirectToAction("Login");
-            };
+                Debug.WriteLine(ex);
+            }
+            return RedirectToAction("Login");
         }
 
         [Route("logout")]
