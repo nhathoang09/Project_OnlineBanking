@@ -111,15 +111,30 @@ namespace Project_OnlineBanking.Services
             return db.Transactions.Where(t => t.SenderAccountId == BankAccountId || t.RecipientAccountId == BankAccountId).ToList();
         }
 
-
-        public Decimal AmountUp(int accountId)
+        public Decimal AmountUp(int accountId, int month, int year)
         {
-            return db.Transactions.Where(i => i.RecipientAccountId == accountId).Sum(a => a.Amount);
+            if (month != 0)
+            {
+                return db.Transactions.Where(i => i.RecipientAccountId == accountId && ((DateTime)i.TransactionDate.Value).Month == month && ((DateTime)i.TransactionDate.Value).Year == year).Sum(a => a.Amount);
+            }
+            else
+            {
+                return db.Transactions.Where(i => i.RecipientAccountId == accountId && ((DateTime)i.TransactionDate.Value).Year == year).Sum(a => a.Amount);
+            }
         } 
-        public Decimal AmountDown(int accountId)
+
+        public Decimal AmountDown(int accountId, int month, int year)
         {
-            return db.Transactions.Where(i => i.SenderAccountId == accountId).Sum(a => a.Amount);
+            if (month != 0)
+            {
+                return db.Transactions.Where(i => i.SenderAccountId == accountId && ((DateTime)i.TransactionDate.Value).Month == month && ((DateTime)i.TransactionDate.Value).Year == year).Sum(a => a.Amount);
+            }
+            else
+            {
+                return db.Transactions.Where(i => i.SenderAccountId == accountId && ((DateTime)i.TransactionDate.Value).Year == year).Sum(a => a.Amount);
+            }
         }
+
         public bool topUp(Transaction transaction)
         {
             try

@@ -77,8 +77,6 @@ namespace Project_OnlineBanking.Controllers
             }
         }
 
-
-
         [Route("dashboard")]
         public IActionResult Dashboard()
         {
@@ -88,7 +86,7 @@ namespace Project_OnlineBanking.Controllers
         [Route("accessDenied")]
         public IActionResult AccessDenied()
         {
-            return View("AccessDenied");
+            return View("Login");
         }
 
         [HttpPost]

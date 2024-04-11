@@ -29,7 +29,7 @@ var app = builder.Build();
 app.UseSession();
 
 /*app.UseMiddleware<LoginMiddleware>();*/
-/*app.UseMiddleware<BankIdMiddleware>();*/
+app.UseMiddleware<BankIdMiddleware>();
 
 app.UseStaticFiles();
 

@@ -8,6 +8,7 @@ namespace Project_OnlineBanking.Controllers
         [Route("index")]
         public IActionResult Index()
         {
+            ViewBag.year = DateTime.Now.Year;
             return View();
         }
     }

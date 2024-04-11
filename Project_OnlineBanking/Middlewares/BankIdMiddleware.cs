@@ -21,7 +21,7 @@ namespace Project_OnlineBanking.Middlewares
             {
                 if (httpContext.Session.GetInt32("bankId") == null)
                 {
-                    httpContext.Response.Redirect("/account/middle");
+                    httpContext.Response.Redirect("/account/login");
                 }
             }
             return _next(httpContext);

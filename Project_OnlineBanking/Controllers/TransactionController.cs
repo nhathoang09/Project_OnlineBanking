@@ -18,7 +18,7 @@ namespace Project_OnlineBanking.Controllers
         {
             if (num == 0)
             {
-                num = 3;
+                num = 5;
             }
             int BankId = (int)HttpContext.Session.GetInt32("bankId");
             ViewBag.type = type;

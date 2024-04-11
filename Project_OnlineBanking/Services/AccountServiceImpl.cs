@@ -76,7 +76,7 @@ public class AccountServiceImpl : AccountService
         var account = db.Accounts.Find(id);
         try
         {
-           
+            account.FailedLoginCount = 0;
             account.IsTransferEnabled = (status)? false : true;
             db.Entry(account).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
             return db.SaveChanges() > 0;
@@ -97,6 +97,4 @@ public class AccountServiceImpl : AccountService
         int count = db.Accounts.Count();
         return count;
     }
-
-    
 }
